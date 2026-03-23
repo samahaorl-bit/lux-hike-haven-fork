@@ -12,6 +12,7 @@ import {
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import Image from "next/image";
+import { getAirbnbUrl } from "@/lib/links";
 import poolImage from "@/assets/grevenmacher-pool.jpg";
 import butterflyImage from "@/assets/butterfly-garden.jpg";
 import culturalCenterImage from "@/assets/cultural-center.jpg";
@@ -78,6 +79,7 @@ const attractions = [
 ];
 
 const GrevenmacherSection = () => {
+  const airbnbUrl = getAirbnbUrl("grevenmacher-section");
   return (
     <section
       id="grevenmacher"
@@ -186,12 +188,7 @@ const GrevenmacherSection = () => {
               variant="default"
               size="lg"
               className="bg-primary text-primary-foreground hover:bg-primary-hover shadow-lg rounded-lg"
-              onClick={() =>
-                window.open(
-                  "https://www.airbnb.com/rooms/1429091370025168336?search_mode=regular_search&adults=1&check_in=2025-08-23&check_out=2025-08-28&children=0&infants=0&pets=0&source_impression_id=p3_1755626984_P3-Kj9nslpmHOqS1&previous_page_section_name=1000&federated_search_id=1138e53b-14a1-4296-aa88-5e7bbcaaad82",
-                  "_blank"
-                )
-              }
+              onClick={() => window.open(airbnbUrl, "_blank")}
             >
               Book Now
             </Button>

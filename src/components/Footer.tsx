@@ -2,8 +2,10 @@
 
 import { Heart, Mountain } from "lucide-react";
 import Link from "next/link";
+import { getAirbnbUrl } from "@/lib/links";
 
 const Footer = () => {
+  const airbnbUrl = getAirbnbUrl("footer");
   return (
     <footer className="bg-primary text-primary-foreground py-12">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -77,7 +79,7 @@ const Footer = () => {
               through Airbnb for the best rates and instant confirmation.
             </p>
             <button
-              onClick={() => window.open("https://airbnb.com", "_blank")}
+              onClick={() => window.open(airbnbUrl, "_blank")}
               className="bg-primary-foreground text-primary px-4 py-2 rounded-lg text-sm font-medium hover:bg-primary-foreground/90 transition-colors"
             >
               View on Airbnb

@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import apartmentInterior from "@/assets/apartment-interior.jpg";
 import Image from "next/image";
+import { getAirbnbUrl } from "@/lib/links";
 
 const amenities = [
   { icon: Wifi, label: "Free WiFi" },
@@ -51,6 +52,7 @@ const apartmentFeatures = [
 ];
 
 const ApartmentSection = () => {
+  const airbnbUrl = getAirbnbUrl("apartment-section");
   return (
     <section
       id="apartment"
@@ -172,7 +174,7 @@ const ApartmentSection = () => {
                   variant="cta"
                   size="lg"
                   className="w-full"
-                  onClick={() => window.open("https://airbnb.com", "_blank")}
+                  onClick={() => window.open(airbnbUrl, "_blank")}
                 >
                   View on Airbnb
                 </Button>
@@ -259,7 +261,7 @@ const ApartmentSection = () => {
                 <Button
                   variant="cta-light"
                   size="lg"
-                  onClick={() => window.open("https://airbnb.com", "_blank")}
+                  onClick={() => window.open(airbnbUrl, "_blank")}
                 >
                   View on Airbnb
                 </Button>

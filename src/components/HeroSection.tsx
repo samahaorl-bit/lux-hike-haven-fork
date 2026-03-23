@@ -8,8 +8,10 @@ import heroImage1 from "@/assets/hero-luxembourg.jpg";
 import heroImage2 from "@/assets/hero-luxembourg-2.jpg";
 import heroImage3 from "@/assets/hero-luxembourg-3.jpg";
 import heroImage4 from "@/assets/hero-luxembourg-4.jpg";
+import { getAirbnbUrl } from "@/lib/links";
 
 const HeroSection = () => {
+  const airbnbUrl = getAirbnbUrl("hero-section");
   const heroImages = [heroImage1, heroImage2, heroImage3, heroImage4];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -163,12 +165,7 @@ const HeroSection = () => {
               size="lg"
               variant="outline"
               className="border-white/30 text-white hover:bg-white/10 backdrop-blur-sm transition-all duration-300"
-              onClick={() =>
-                window.open(
-                  "https://www.airbnb.com/rooms/1429091370025168336?search_mode=regular_search&adults=1&check_in=2025-08-23&check_out=2025-08-28&children=0&infants=0&pets=0&source_impression_id=p3_1755626984_P3-Kj9nslpmHOqS1&previous_page_section_name=1000&federated_search_id=1138e53b-14a1-4296-aa88-5e7bbcaaad82",
-                  "_blank"
-                )
-              }
+              onClick={() => window.open(airbnbUrl, "_blank")}
             >
               Book on Airbnb
             </Button>
