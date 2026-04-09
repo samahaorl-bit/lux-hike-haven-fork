@@ -1,0 +1,90 @@
+LUX TRAVELER SEO - CLIENT STATUS
+Date: 2026-04-08
+Website: https://luxtraveler.eu
+Main target: Dutch tourists searching for "wandelen in Luxemburg"
+
+========================================
+1) WHAT IS DONE
+========================================
+Technical and on-site SEO foundation has been implemented.
+
+Completed:
+- Domain-aligned SEO metadata across the app.
+- New Dutch SEO pages:
+  - /nl/wandelen-in-luxemburg
+  - /nl/wandelroutes-luxemburg
+  - /nl/wandelweekend-luxemburg
+  - /nl/mullerthal-wandeling
+  - /nl/overnachten-bij-wandelroutes-luxemburg
+  - /nl/wandelen-met-kinderen-luxemburg
+  - /nl/seizoenswandelroutes-luxemburg
+  - /nl/beginners-wandelroutes-luxemburg
+  - /nl/regenachtige-dag-luxemburg
+- New English SEO pages:
+  - /en/hiking-in-luxembourg
+  - /en/luxembourg-hiking-trails
+- Canonical + hreflang language alternates for key pages.
+- Dynamic robots.txt and sitemap.xml generation in Next.js.
+- Internal linking improvements from navigation, footer, and homepage.
+- Structured data additions (Organization, LodgingBusiness, FAQ/ItemList where relevant).
+- Conversion-focused trust and booking blocks on key NL/EN landing pages.
+- Intent differentiation:
+  - Home page is now positioned as brand/conversion gateway.
+  - NL hub is now reinforced as the primary Dutch informational page.
+- Technical hardening:
+  - Redirect rules for variant URLs.
+  - TypeScript config cleanup.
+- Monthly CTR + internal anchor refresh runbook:
+  - SEO_CTR_TEST_RUNBOOK.md
+
+Current result:
+- The website now has a stronger Dutch ranking footprint and conversion-ready funnel pages.
+
+========================================
+2) WHAT IS LEFT
+========================================
+The remaining work is mainly deployment, indexing, content depth, and authority building.
+
+Remaining:
+- Deploy latest build to production on Vercel.
+- Run post-deploy checks from DEPLOY_INDEXING_CHECKLIST.txt.
+- Submit sitemap in Google Search Console.
+- Request indexing for new Dutch and English SEO pages.
+- Start backlink outreach in Dutch travel/hiking websites.
+- Start monthly title/description CTR tests and internal anchor refresh cycle.
+
+========================================
+3) PROPOSED ETA PLAN
+========================================
+Phase 1 (Day 1-2)
+- Deploy latest SEO updates.
+- Verify /robots.txt and /sitemap.xml live.
+- Submit sitemap and request indexing for new SEO pages.
+
+Phase 2 (Week 1)
+- Request indexing for newly added Dutch growth pages.
+- Enrich route details (difficulty, transport, seasonality).
+
+Phase 3 (Weeks 2-4)
+- Run backlink outreach campaign.
+- Improve meta titles/descriptions based on early Search Console data.
+
+Phase 4 (Month 2-3)
+- Ongoing content updates and internal linking refinements.
+- CTR optimization and ranking improvements per page/keyword.
+
+========================================
+4) SUCCESS METRICS TO TRACK
+========================================
+- Index coverage of new NL/EN pages.
+- Impressions and clicks for Dutch terms (especially "wandelen in Luxemburg").
+- Average Google position for target pages.
+- Organic bookings/leads assisted by SEO pages.
+
+========================================
+5) CURRENT STATUS
+========================================
+Status: ON TRACK
+
+The hard technical and structural SEO work is completed.
+Next gains will come from indexing, content expansion, and backlinks.

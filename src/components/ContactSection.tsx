@@ -68,12 +68,15 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="py-20 bg-gradient-to-br from-gray-50 to-gray-100"
+      className="section-divider section-parallax-soft py-24 bg-gradient-to-b from-muted/55 via-background to-muted/45"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16 animate-fade-in">
-          <h2 className="text-4xl font-bold text-primary mb-4">Get in Touch</h2>
+        <div className="section-reveal text-center mb-16">
+          <p className="inline-flex items-center rounded-full bg-secondary/10 text-secondary px-4 py-1.5 text-xs font-semibold tracking-wide mb-4">
+            Plan With Confidence
+          </p>
+          <h2 className="text-4xl font-bold text-foreground mb-4">Get in Touch</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             Have questions about our apartment or need hiking recommendations?
             We'd love to help you plan your Luxembourg adventure.
@@ -83,8 +86,8 @@ export default function ContactSection() {
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Contact Info */}
-            <div className="lg:col-span-1 animate-slide-up">
-              <Card className="h-full bg-white shadow-lg">
+            <div className="lg:col-span-1 section-reveal">
+              <Card className="h-full border-border/70 bg-card/90 backdrop-blur-sm shadow-soft">
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-primary">
                     <MessageSquare className="h-5 w-5" /> Contact Information
@@ -116,7 +119,7 @@ export default function ContactSection() {
                     </div>
                   </div>
 
-                  <div className="bg-primary/10 rounded-lg p-4">
+                  <div className="bg-secondary/10 rounded-lg p-4 border border-secondary/20">
                     <h4 className="font-medium text-primary mb-2">
                       Quick Response
                     </h4>
@@ -130,11 +133,8 @@ export default function ContactSection() {
             </div>
 
             {/* Contact Form */}
-            <div
-              className="lg:col-span-2 animate-slide-up"
-              style={{ animationDelay: "0.2s" }}
-            >
-              <Card className="bg-white shadow-lg">
+            <div className="lg:col-span-2 section-reveal section-reveal-delay">
+              <Card className="border-border/70 bg-card/90 backdrop-blur-sm shadow-soft">
                 <CardHeader>
                   <CardTitle className="text-primary">
                     Send us a Message
@@ -189,7 +189,7 @@ export default function ContactSection() {
                     <Button
                       type="submit"
                       size="lg"
-                      className="w-full bg-primary hover:bg-primary-hover text-white shadow-lg"
+                      className="w-full bg-primary hover:bg-primary-hover text-primary-foreground shadow-lg"
                       disabled={loading}
                     >
                       {loading ? (
@@ -211,16 +211,16 @@ export default function ContactSection() {
           </div>
 
           {/* Map Placeholder */}
-          <div className="mt-12 animate-fade-in">
-            <Card className="overflow-hidden bg-primary/10">
+          <div className="section-reveal section-reveal-delay mt-12">
+            <Card className="overflow-hidden border-primary/30 bg-gradient-forest text-primary-foreground">
               <CardContent className="p-0">
-                <div className="h-64 flex items-center justify-center text-primary">
+                <div className="h-64 flex items-center justify-center text-primary-foreground">
                   <div className="text-center">
                     <MapPin className="h-12 w-12 mx-auto mb-4" />
                     <h3 className="text-xl font-semibold mb-2">
                       Prime Luxembourg Location
                     </h3>
-                    <p>
+                    <p className="text-primary-foreground/80">
                       Perfectly positioned for easy access to hiking trails and
                       city amenities
                     </p>

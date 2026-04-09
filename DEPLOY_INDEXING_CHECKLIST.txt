@@ -1,0 +1,77 @@
+DEPLOY + INDEXING CHECKLIST (LUXTRAVELER.EU)
+Date: 2026-04-08
+
+==================================================
+A) DEPLOY ON VERCEL
+==================================================
+1. Push current branch to GitHub.
+2. Confirm Vercel project is connected to this repository.
+3. Trigger production deploy from main branch.
+4. Wait for deployment to finish successfully.
+
+==================================================
+B) LIVE URL VERIFICATION (POST-DEPLOY)
+==================================================
+Check these URLs in browser and ensure they return HTTP 200:
+1. https://luxtraveler.eu/robots.txt
+2. https://luxtraveler.eu/sitemap.xml
+3. https://luxtraveler.eu/nl/wandelen-in-luxemburg
+4. https://luxtraveler.eu/nl/wandelroutes-luxemburg
+5. https://luxtraveler.eu/nl/wandelweekend-luxemburg
+6. https://luxtraveler.eu/nl/mullerthal-wandeling
+7. https://luxtraveler.eu/nl/overnachten-bij-wandelroutes-luxemburg
+8. https://luxtraveler.eu/en/hiking-in-luxembourg
+9. https://luxtraveler.eu/en/luxembourg-hiking-trails
+10. https://luxtraveler.eu/nl/wandelen-met-kinderen-luxemburg
+11. https://luxtraveler.eu/nl/seizoenswandelroutes-luxemburg
+12. https://luxtraveler.eu/nl/beginners-wandelroutes-luxemburg
+13. https://luxtraveler.eu/nl/regenachtige-dag-luxemburg
+
+Also test redirects:
+1. https://luxtraveler.eu/wandelen-in-luxemburg
+2. https://luxtraveler.eu/wanderen-in-luxemburg
+3. https://luxtraveler.eu/wandelweekend-luxemburg
+4. https://luxtraveler.eu/hiking-in-luxembourg
+5. https://luxtraveler.eu/wandelen-met-kinderen-luxemburg
+6. https://luxtraveler.eu/seizoenswandelroutes-luxemburg
+7. https://luxtraveler.eu/beginners-wandelroutes-luxemburg
+8. https://luxtraveler.eu/regenachtige-dag-luxemburg
+
+Expected result:
+- Direct URLs load correctly.
+- Variant URLs redirect to language-scoped canonical pages.
+
+==================================================
+C) GOOGLE SEARCH CONSOLE ACTIONS
+==================================================
+1. Open property for luxtraveler.eu.
+2. Submit sitemap:
+   https://luxtraveler.eu/sitemap.xml
+3. Request indexing for high-priority pages first:
+   - https://luxtraveler.eu/nl/wandelen-in-luxemburg
+   - https://luxtraveler.eu/nl/wandelroutes-luxemburg
+   - https://luxtraveler.eu/nl/wandelweekend-luxemburg
+   - https://luxtraveler.eu/nl/mullerthal-wandeling
+   - https://luxtraveler.eu/nl/overnachten-bij-wandelroutes-luxemburg
+   - https://luxtraveler.eu/en/hiking-in-luxembourg
+4. After indexing starts, request the remaining SEO pages.
+5. High-priority new pages for indexing queue:
+   - https://luxtraveler.eu/nl/wandelen-met-kinderen-luxemburg
+   - https://luxtraveler.eu/nl/seizoenswandelroutes-luxemburg
+   - https://luxtraveler.eu/nl/beginners-wandelroutes-luxemburg
+   - https://luxtraveler.eu/nl/regenachtige-dag-luxemburg
+6. Execute full submission order from SEARCH_CONSOLE_SUBMISSION_PLAN.md.
+
+==================================================
+D) FIRST 14-DAY MONITORING
+==================================================
+1. Check indexing status every 2-3 days.
+2. Track impressions for Dutch queries containing:
+   - wandelen in Luxemburg
+   - wandelroutes Luxemburg
+   - wandelweekend Luxemburg
+   - wandelen met kinderen Luxemburg
+   - beginners wandelroutes Luxemburg
+   - regenachtige dag Luxemburg
+3. Compare CTR on the Dutch hub vs Dutch weekend page.
+4. If pages are indexed but low CTR, revise title + meta descriptions.

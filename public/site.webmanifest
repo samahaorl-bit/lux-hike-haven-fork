@@ -1,10 +1,10 @@
 {
-  "name": "Central & Stylish Maisonette Grevenmacher",
-  "short_name": "Maisonette",
+  "name": "Lux Traveler - Hiking in Luxembourg",
+  "short_name": "Lux Traveler",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#ffffff",
+  "theme_color": "#0f766e",
   "icons": [
     {
       "src": "/favicon.ico",

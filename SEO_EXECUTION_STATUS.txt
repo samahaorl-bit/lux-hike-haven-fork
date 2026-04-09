@@ -1,0 +1,184 @@
+LUX TRAVELER SEO EXECUTION STATUS
+Updated: 2026-04-08
+Primary domain: https://luxtraveler.eu
+Primary target query: "wandelen in Luxemburg" (Dutch tourists from Holland)
+
+==================================================
+1) STRATEGY PLAN (AGREED)
+==================================================
+1. Build Dutch-first SEO architecture with indexable pages.
+2. Add English equivalent cluster pages for broader coverage.
+3. Implement canonical, hreflang, and metadata per page.
+4. Replace static hash-based sitemap with real URL sitemap.
+5. Improve internal linking to key SEO pages.
+6. Add structured data for richer search understanding.
+7. Keep accommodation intent connected to hiking intent for conversion.
+8. Track and iterate with Search Console and ranking data.
+
+==================================================
+2) EXECUTED SO FAR (IMPLEMENTED)
+==================================================
+STATUS: COMPLETED
+
+A) Domain + global metadata update
+- Updated global metadata to use https://luxtraveler.eu.
+- Improved Open Graph and Twitter defaults.
+- Added structured data at layout level (Organization + LodgingBusiness).
+- File: src/app/layout.tsx
+
+B) Central SEO config and route constants
+- Added shared site configuration and SEO route map.
+- File: src/lib/site.ts
+
+C) Multilingual SEO landing pages
+- Dutch hub page: /nl/wandelen-in-luxemburg
+  File: src/app/nl/wandelen-in-luxemburg/page.tsx
+- Dutch trails page: /nl/wandelroutes-luxemburg
+  File: src/app/nl/wandelroutes-luxemburg/page.tsx
+- English hub page: /en/hiking-in-luxembourg
+  File: src/app/en/hiking-in-luxembourg/page.tsx
+- English trails page: /en/luxembourg-hiking-trails
+  File: src/app/en/luxembourg-hiking-trails/page.tsx
+
+D) Language root redirects
+- /nl -> /nl/wandelen-in-luxemburg
+  File: src/app/nl/page.tsx
+- /en -> /en/hiking-in-luxembourg
+  File: src/app/en/page.tsx
+
+E) Metadata and alternates on key pages
+- Added page-level canonical and language alternates.
+- Updated homepage metadata.
+- Files:
+  - src/app/page.tsx
+  - src/app/photo-tour/page.tsx
+
+F) Crawl/index infrastructure
+- Added dynamic robots endpoint.
+  File: src/app/robots.ts
+- Added dynamic sitemap endpoint with alternates.
+  File: src/app/sitemap.ts
+- Removed old static files that contained hash URLs:
+  - public/robots.txt (deleted)
+  - public/sitemap.xml (deleted)
+
+G) Internal linking improvements
+- Added NL/EN SEO links in top navigation.
+  File: src/components/ui/navigation.tsx
+- Added crawlable footer links to NL/EN pages.
+  File: src/components/Footer.tsx
+- Added homepage internal links to NL/EN hubs.
+  File: src/app/page.tsx
+
+H) Reusable route data model for SEO pages
+- Added route dataset used by NL/EN content pages.
+- File: src/lib/hiking-routes.ts
+
+I) Manifest branding alignment
+- Updated web manifest branding and theme color.
+- File: public/site.webmanifest
+
+J) Dutch content expansion batch (Phase 2 execution)
+- Added /nl/wandelweekend-luxemburg
+  File: src/app/nl/wandelweekend-luxemburg/page.tsx
+- Added /nl/mullerthal-wandeling
+  File: src/app/nl/mullerthal-wandeling/page.tsx
+- Added /nl/overnachten-bij-wandelroutes-luxemburg
+  File: src/app/nl/overnachten-bij-wandelroutes-luxemburg/page.tsx
+- Added these pages to sitemap generation.
+  File: src/app/sitemap.ts
+
+K) Conversion SEO improvements
+- Added stronger trust and conversion sections on NL/EN hub pages.
+  Files:
+  - src/app/nl/wandelen-in-luxemburg/page.tsx
+  - src/app/en/hiking-in-luxembourg/page.tsx
+- Added deeper internal linking from NL trails page and footer.
+  Files:
+  - src/app/nl/wandelroutes-luxemburg/page.tsx
+  - src/components/Footer.tsx
+
+L) Technical hardening
+- Added permanent redirects for variant/non-locale URLs.
+  File: next.config.mjs
+- Resolved TypeScript deprecation warnings by updating tsconfig aliases and moduleResolution.
+  File: tsconfig.json
+- Added CSS module declaration for side-effect CSS import typing support.
+  File: global.d.ts
+
+N) Phase 3 growth implementation (1-3 month window)
+- Reduced home vs NL-hub cannibalization by repositioning homepage metadata toward brand/conversion intent.
+  Files:
+  - src/app/page.tsx
+  - src/app/layout.tsx
+  - src/lib/site.ts
+- Expanded Dutch cluster depth with 4 new intent pages:
+  - /nl/wandelen-met-kinderen-luxemburg
+  - /nl/seizoenswandelroutes-luxemburg
+  - /nl/beginners-wandelroutes-luxemburg
+  - /nl/regenachtige-dag-luxemburg
+  Files:
+  - src/app/nl/wandelen-met-kinderen-luxemburg/page.tsx
+  - src/app/nl/seizoenswandelroutes-luxemburg/page.tsx
+  - src/app/nl/beginners-wandelroutes-luxemburg/page.tsx
+  - src/app/nl/regenachtige-dag-luxemburg/page.tsx
+- Added intent-driven internal anchors between NL hub and cluster pages.
+  Files:
+  - src/app/nl/wandelen-in-luxemburg/page.tsx
+  - src/app/nl/wandelroutes-luxemburg/page.tsx
+  - src/app/nl/wandelweekend-luxemburg/page.tsx
+  - src/app/nl/mullerthal-wandeling/page.tsx
+  - src/app/nl/overnachten-bij-wandelroutes-luxemburg/page.tsx
+  - src/components/Footer.tsx
+- Added redirects and sitemap inclusion for all new Phase 3 pages.
+  Files:
+  - next.config.mjs
+  - src/app/sitemap.ts
+- Added monthly CTR testing and anchor-refresh operational runbook.
+  File:
+  - SEO_CTR_TEST_RUNBOOK.md
+
+==================================================
+3) REMAINING WORK (OPERATIONS)
+==================================================
+STATUS: PENDING
+
+A) Deployment and indexing operations
+1. Deploy latest changes to Vercel.
+2. Verify live endpoints:
+   - /robots.txt
+   - /sitemap.xml
+   - /nl/wandelen-in-luxemburg
+   - /en/hiking-in-luxembourg
+3. Submit sitemap in Google Search Console.
+4. Request indexing for new NL/EN SEO pages.
+5. Run the checklist in DEPLOY_INDEXING_CHECKLIST.txt.
+
+B) Dutch content expansion (optional next layer)
+1. Add supporting blog posts for each new Phase 3 intent page.
+2. Extend each intent page with richer local proof (parking, train access, area timings).
+3. Add EN equivalents only where search demand justifies it.
+
+C) Authority and backlinks (off-page SEO)
+1. Outreach to Dutch hiking/travel blogs.
+2. Place destination guides with partner sites.
+3. Earn links from Luxembourg tourism and hiking directories.
+4. Publish linkable assets (printable itineraries, route packs, seasonal updates).
+
+D) Measurement and iteration
+1. Execute monthly runbook in SEO_CTR_TEST_RUNBOOK.md.
+2. Track CTR by page and improve title/meta variants monthly.
+3. Track booking conversions from SEO pages.
+4. Refresh internal anchors for winner pages every month.
+
+E) Optional technical cleanup
+1. Re-run full build/typecheck in CI and verify no regressions after tsconfig update.
+2. Add automated redirect tests for locale canonicalization.
+
+==================================================
+4) CURRENT OUTCOME SUMMARY
+==================================================
+- SEO architecture is now in place and production-ready in code.
+- The site now has dedicated Dutch and English landing pages.
+- Technical crawl/index foundation is upgraded to modern Next metadata routes.
+- Main remaining impact work is deployment, indexing, content depth, and backlinks.

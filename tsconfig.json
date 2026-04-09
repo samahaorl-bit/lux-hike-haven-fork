@@ -1,22 +1,21 @@
 {
   "compilerOptions": {
     "target": "ES2017",
-    "baseUrl": "src/",
     "paths": {
       "@/styles/*": [
-        "styles/*"
+        "./src/styles/*"
       ],
       "@/components/*": [
-        "components/*"
+        "./src/components/*"
       ],
       "@/assets/*": [
-        "assets/*"
+        "./src/assets/*"
       ],
       "@/lib/*": [
-        "lib/*"
+        "./src/lib/*"
       ],
       "@/*": [
-        "*"
+        "./src/*"
       ]
     },
     "lib": [
@@ -31,7 +30,7 @@
     "incremental": true,
     "module": "esnext",
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",

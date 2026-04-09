@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { Button } from "./ui/button";
 import { Star, ShieldCheck, Clock, MapPin } from "lucide-react";
@@ -9,16 +7,18 @@ export default function CtaReserveSection() {
   const airbnbUrl = getAirbnbUrl("cta-reserve-section");
 
   return (
-    <section className="relative py-28 bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
-      <div className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(circle_at_center,black,transparent)] opacity-40" />
+    <section className="section-divider section-parallax-medium relative py-28 bg-gradient-to-b from-muted/55 via-background to-muted/45 overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none [mask-image:radial-gradient(circle_at_center,black,transparent)] opacity-25" />
+      <div className="absolute -top-20 -left-16 h-64 w-64 rounded-full bg-secondary/20 blur-3xl" />
+      <div className="absolute -bottom-20 -right-16 h-64 w-64 rounded-full bg-accent/20 blur-3xl" />
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
-          <div className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium shadow-sm">
+        <div className="section-reveal max-w-5xl mx-auto rounded-3xl border border-border/70 bg-card/85 backdrop-blur-sm px-6 py-10 md:px-12 md:py-14 text-center space-y-8 shadow-medium">
+          <div className="inline-flex items-center gap-2 bg-secondary/10 text-secondary px-4 py-2 rounded-full text-sm font-medium shadow-sm">
             <Star className="h-4 w-4 fill-current" /> 4.9 Rated Stay
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight leading-tight text-foreground">
             Book Your Grevenmacher Escape
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
+            <span className="block text-secondary">
               before your dates go
             </span>
           </h2>
@@ -31,7 +31,7 @@ export default function CtaReserveSection() {
             <Button
               asChild
               size="lg"
-              className="h-14 px-10 text-lg rounded-xl shadow-primary/30 shadow hover:shadow-lg hover:scale-[1.02] transition group bg-primary text-primary-foreground"
+              className="h-14 px-10 text-lg rounded-xl shadow hover:shadow-lg hover:scale-[1.02] transition group bg-primary text-primary-foreground hover:bg-primary-hover"
             >
               <Link href={airbnbUrl} target="_blank" rel="noopener noreferrer">
                 Reserve now

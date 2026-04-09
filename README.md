@@ -1,171 +1,171 @@
-<div align="center">
+# Lux Hike Haven
 
-# Lux Hike Haven 🏡🥾
+Marketing and SEO-focused Next.js application for a hiking-friendly apartment in Grevenmacher, Luxembourg.
 
-Modern, responsive Next.js 15 application marketing a premium Grevenmacher (Luxembourg) apartment: hiking‑friendly location, curated local attractions, rich photo tour, and direct contact form with EmailJS integration.
+This project combines:
+- Conversion-first landing pages
+- Dutch and English informational SEO hubs
+- A bilingual static blog cluster
+- Structured metadata and indexing controls
 
-</div>
+Updated: 2026-04-09
 
-## ✨ Features
+## Current status
 
-- Elegant landing hero with strong dual CTAs (reserve & explore sections)
-- Detailed “About / Listing Details” & highlights (prominent amenities surfaced early)
-- Sleep arrangements & amenities sections (responsive cards)
-- Hiking Guide & Grevenmacher Tourism sections (image cards, gradient overlays)
-- Photo Tour page (optimized `next/image` usage)
-- CTA “Book Your Grevenmacher Escape” section with gradient emphasis
-- Contact form powered by EmailJS (client‑side submit + toast feedback)
-- Custom not‑found handling
-- Accessible, keyboard‑friendly UI (shadcn-ui + Radix primitives)
-- Mobile‑first responsive layout & fluid typography
-- Tailwind utility design system with theme tokens
+The technical SEO rollout is implemented through Phase 3 in code:
+- Home page is positioned as brand and booking gateway
+- Dutch hub is positioned as the primary informational ranking page
+- Dutch cluster includes family, seasonal, beginner, and rainy-day intent pages
+- Canonical/hreflang, redirects, robots, sitemap, and JSON-LD are in place
 
-## 🧱 Tech Stack
+Operational SEO (indexing, CTR iteration, authority growth) is managed through the documentation listed below.
 
-| Layer                        | Technology                                                 |
-| ---------------------------- | ---------------------------------------------------------- |
-| Framework                    | Next.js ^15.5.0 (App Router)                               |
-| Language                     | TypeScript                                                 |
-| UI Primitives                | shadcn-ui / Radix UI                                       |
-| Styling                      | Tailwind CSS + custom design tokens                        |
-| Icons                        | lucide-react                                               |
-| State / Forms                | React 19 + controlled inputs / react-hook-form (available) |
-| Email                        | emailjs-com                                                |
-| Data Fetching (future ready) | @tanstack/react-query                                      |
-| Charts / Extras              | Recharts (if needed)                                       |
+## Key routes
 
-## 🔐 Environment Variables
+### Core experience
+- `/`
+- `/photo-tour`
+- `/blog` (redirects to Dutch blog index)
 
-Create a `.env.local` in the project root:
+### Dutch SEO cluster
+- `/nl/wandelen-in-luxemburg`
+- `/nl/wandelroutes-luxemburg`
+- `/nl/wandelweekend-luxemburg`
+- `/nl/mullerthal-wandeling`
+- `/nl/overnachten-bij-wandelroutes-luxemburg`
+- `/nl/wandelen-met-kinderen-luxemburg`
+- `/nl/seizoenswandelroutes-luxemburg`
+- `/nl/beginners-wandelroutes-luxemburg`
+- `/nl/regenachtige-dag-luxemburg`
+- `/nl/blog`
+
+### English SEO cluster
+- `/en/hiking-in-luxembourg`
+- `/en/luxembourg-hiking-trails`
+- `/en/blog`
+
+### SEO infrastructure endpoints
+- `/robots.txt`
+- `/sitemap.xml`
+
+## SEO architecture
+
+- Central SEO config and route map: `src/lib/site.ts`
+- Dynamic robots with production host guard: `src/app/robots.ts`
+- Dynamic sitemap with alternates and content freshness: `src/app/sitemap.ts`
+- Metadata and site-level schema: `src/app/layout.tsx`
+- Redirect rules (www, slug canonicalization): `next.config.mjs`
+
+## Documentation map
+
+- `README.md` - project overview and setup
+- `APP_STRUCTURE.md` - current repository structure snapshot
+- `DEPLOY_INDEXING_CHECKLIST.txt` - post-deploy validation and indexing steps
+- `SEARCH_CONSOLE_SUBMISSION_PLAN.md` - prioritized URL submission queue and 14-day checks
+- `SEO_CTR_TEST_RUNBOOK.md` - monthly metadata testing and internal anchor refresh process
+- `SEO_EXECUTION_STATUS.txt` - implementation status and change log
+- `SEO_CLIENT_STATUS.txt` - client-facing SEO status summary
+
+## Tech stack
+
+| Layer | Technology |
+| --- | --- |
+| Framework | Next.js 15.5.9 (App Router) |
+| Language | TypeScript |
+| UI | React 19, shadcn-ui, Radix UI, lucide-react |
+| Styling | Tailwind CSS |
+| Forms/validation | react-hook-form, zod |
+| Notifications | sonner |
+| Contact integration | emailjs-com |
+
+## Environment variables
+
+Create `.env.local` in project root:
 
 ```env
 NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
 NEXT_PUBLIC_EMAILJS_TEMPLATE_ID=your_template_id
 NEXT_PUBLIC_EMAILJS_USER_ID=your_public_key_or_user_id
+
+# Optional but recommended for canonical metadata
+NEXT_PUBLIC_SITE_URL=https://luxtraveler.eu
+
+# Optional server-side override
+SITE_URL=https://luxtraveler.eu
 ```
 
-Make sure your EmailJS template expects the fields: `from_name`, `to_email`, `reply_to`, `message`.
+EmailJS template variables expected by the contact form:
+- `from_name`
+- `to_email`
+- `reply_to`
+- `message`
 
-## 📁 Project Structure (abridged)
+## Getting started
 
-```
-src/
-	app/
-		layout.tsx           # Root layout
-		page.tsx             # Home page
-		photo-tour/page.tsx  # Photo tour page
-		not-found.tsx        # Custom 404 (App Router)
-	components/
-		HeroSection.tsx
-		ListingDetailSection.tsx
-		SleepSection.tsx
-		AmenitiesSection.tsx
-		HikingGuide.tsx
-		GrevenmacherSection.tsx
-		CtaReserveSection.tsx
-		ContactSection.tsx
-		ui/                  # Reusable shadcn-ui primitives
-	lib/
-		links.ts             # Centralized external URLs (Airbnb, etc.)
-		utils.ts             # Helpers
-public/
-	Photo tour/            # Photo assets (served statically)
-	hiking-maps/           # PDF trail maps
-```
-
-## 🚀 Getting Started
-
-Using pnpm (recommended – lockfile present), else substitute with npm/yarn.
+### pnpm
 
 ```bash
-git clone <repo-url>
-cd lux-hike-haven
 pnpm install
-cp .env.local.example .env.local   # (create + fill if you add example file)
-pnpm run dev
+pnpm dev
 ```
 
-Visit http://localhost:3000
-
-### Alternate (npm)
+### npm
 
 ```bash
 npm install
 npm run dev
 ```
 
-## 🛠 Development Notes
+Open `http://localhost:3000`.
 
-- Components under `src/components` are all client components (interactive sections / forms).
-- Keep image imports via `next/image` for automatic optimization.
-- Favor existing Tailwind design tokens (`text-primary`, `bg-primary`, etc.) for consistency.
-- When adding new interactive logic, co-locate lightweight hooks under `src/hooks`.
-- Use semantic sectioning (`<section id="...">`) to maintain in‑page navigation & accessibility.
+## Scripts
 
-## 📨 EmailJS Integration
+| Script | Purpose |
+| --- | --- |
+| `npm run dev` | Start local dev server |
+| `npm run build` | Build for production |
+| `npm run start` | Start production server (requires build) |
+| `npm run lint` | Run ESLint |
 
-The contact form ( `ContactSection` ) calls:
+## Common troubleshooting
 
-```ts
-emailjs.send(
-  serviceId,
-  templateId,
-  {
-    from_name,
-    to_email, // fixed recipient added
-    reply_to, // user-entered email
-    message,
-  },
-  publicKey
-);
+### `npm run start` exits with code 1
+
+Most common causes:
+1. No production build exists yet. Run `npm run build` first.
+2. Port 3000 is already in use.
+
+### EmailJS submit issues
+
+If you see missing recipient errors, verify:
+1. Environment variables are loaded.
+2. Template field names match the payload (`to_email`, `reply_to`, etc.).
+
+## High-level structure
+
+```text
+src/
+	app/
+		page.tsx
+		layout.tsx
+		robots.ts
+		sitemap.ts
+		en/
+		nl/
+		blog/
+		photo-tour/
+	components/
+		blog/
+		ui/
+	lib/
+		site.ts
+		blog.ts
+		hiking-routes.ts
+		links.ts
 ```
 
-If you receive `422 recipients address is empty`:
+For a fuller tree snapshot, see `APP_STRUCTURE.md`.
 
-1. Confirm `to_email` variable name matches template.
-2. Ensure the template has a default recipient or uses `to_email` substitution.
-3. Rebuild after adding env vars.
+## License
 
-## 📦 Scripts
-
-| Script       | Purpose                                  |
-| ------------ | ---------------------------------------- |
-| `pnpm dev`   | Run local dev server                     |
-| `pnpm build` | Production build (type check + optimize) |
-| `pnpm start` | Start built app                          |
-| `pnpm lint`  | ESLint static analysis                   |
-
-## 🧪 Quality Checklist
-
-- [x] TypeScript strict enabled (TS 5.8.x)
-- [x] Accessible color contrast for CTAs
-- [x] Responsive breakpoints (sm / md / lg / xl) validated
-- [x] Images use `sizes` where large to reduce CLS
-- [ ] Add Lighthouse report (optional)
-
-## 🔄 Future Enhancements
-
-- Add availability calendar & direct booking widget
-- Integrate serverless email fallback (Resend / Nodemailer API route)
-- Internationalization (English / French / German)
-- Image gallery lightbox with keyboard navigation
-- Structured data (JSON-LD) for lodging listing
-
-## 🤝 Contributing
-
-1. Fork & clone
-2. Create a feature branch `feat/your-feature`
-3. Commit with conventional messages (e.g. `feat: add trail map download`)
-4. Open PR
-
-## 🛡 License
-
-Proprietary – All rights reserved (adjust if you plan to open source).
-
-## 🙋 Support
-
-For questions: use the contact form (production) or email: `samaha.orl@gmail.com`.
-
----
-
-Made with Next.js, Tailwind, and a love for Luxembourg's trails.
+Proprietary. All rights reserved.

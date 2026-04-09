@@ -1,15 +1,23 @@
-"use client";
-
 import { Card, CardContent } from "./ui/card";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
-import { Clock, TrendingUp, Camera, ExternalLink } from "lucide-react";
+import {
+  Clock,
+  TrendingUp,
+  Camera,
+  ExternalLink,
+  MapPin,
+  Car,
+  BedDouble,
+} from "lucide-react";
+import Link from "next/link";
 import Image from "next/image";
 import trail1 from "@/assets/trail-1.jpg";
 import trail2 from "@/assets/trail-2.jpg";
 import trail3 from "@/assets/trail-3.jpg";
 import trail4 from "@/assets/trail-4.jpg";
 import trail5 from "@/assets/trail-5.jpg";
+import { getAirbnbUrl } from "@/lib/links";
 
 const hikingTrails = [
   {
@@ -100,15 +108,26 @@ const getDifficultyColor = (difficulty: string) => {
 };
 
 const HikingGuide = () => {
+  const airbnbUrl = getAirbnbUrl(
+    "hiking-guide-cta",
+    "hiking-intent-section"
+  );
+
   return (
-    <section id="hiking" className="py-20 bg-muted/30">
+    <section
+      id="hiking"
+      className="section-divider section-parallax-soft py-24 bg-gradient-to-b from-muted/45 via-background to-muted/35"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <header className="text-center mb-16 animate-fade-in">
-          <h1 className="section-title text-foreground mb-4">
+        <header className="section-reveal text-center mb-16">
+          <p className="inline-flex items-center rounded-full bg-secondary/10 text-secondary px-4 py-1.5 text-xs font-semibold tracking-wide mb-4">
+            Trail Discovery
+          </p>
+          <h2 className="section-title text-foreground mb-4">
             Hiking in Luxembourg: Complete Trail Guide with Maps
-          </h1>
-          <p className="section-subtitle text-muted-foreground max-w-2xl mx-auto">
+          </h2>
+          <p className="section-subtitle text-muted-foreground max-w-3xl mx-auto">
             Discover Luxembourg's best hiking trails. From scenic riverside
             walks to challenging mountain paths, explore the natural beauty of
             Luxembourg starting from our perfectly located apartment in
@@ -124,7 +143,7 @@ const HikingGuide = () => {
           {hikingTrails.map((trail, index) => (
             <article key={trail.id}>
               <Card
-                className="group overflow-hidden hover:shadow-medium transition-all duration-300 hover:-translate-y-1 animate-scale-in"
+                className="group overflow-hidden border border-border/70 bg-card/90 backdrop-blur-sm hover:shadow-medium transition-all duration-300 hover:-translate-y-1 section-reveal"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="relative overflow-hidden">
@@ -183,13 +202,17 @@ const HikingGuide = () => {
                     <Button
                       size="sm"
                       variant="outline"
-                      onClick={() =>
-                        window.open(trail.officialUrl ?? trail.pdfMap, "_blank")
-                      }
+                      asChild
                       className="flex items-center gap-2 text-xs"
                     >
-                      <ExternalLink className="h-3 w-3" />
-                      Visit Official Site
+                      <a
+                        href={trail.officialUrl ?? trail.pdfMap}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <ExternalLink className="h-3 w-3" />
+                        Visit Official Site
+                      </a>
                     </Button>
                   </div>
                 </CardContent>
@@ -199,16 +222,78 @@ const HikingGuide = () => {
         </div>
 
         {/* Call to Action */}
-        <div className="text-center mt-12 animate-fade-in">
-          <p className="text-muted-foreground mb-4">
-            Ready to explore these amazing trails?
-          </p>
-          <div className="bg-gradient-forest text-white rounded-lg p-6 max-w-md mx-auto">
-            <h3 className="font-semibold mb-2">Perfect Location</h3>
-            <p className="text-sm opacity-90">
-              Our apartment is strategically located with easy access to all
-              these hiking destinations via public transport or car.
-            </p>
+        <div className="section-reveal section-reveal-delay mt-14">
+          <div className="relative overflow-hidden rounded-3xl border border-primary/35 bg-gradient-forest p-8 md:p-10 shadow-strong">
+            <div className="absolute -top-16 -right-12 h-48 w-48 rounded-full bg-secondary/20 blur-3xl" />
+            <div className="absolute -bottom-20 -left-12 h-56 w-56 rounded-full bg-accent/20 blur-3xl" />
+
+            <div className="relative grid gap-8 lg:grid-cols-[1.3fr_0.9fr] items-center">
+              <div>
+                <p className="inline-flex items-center rounded-full bg-primary-foreground/10 px-4 py-1 text-xs font-semibold tracking-wide text-primary-foreground/90">
+                  Ready to explore these amazing trails?
+                </p>
+                <h3 className="text-3xl md:text-4xl font-bold text-primary-foreground mt-4 mb-3">
+                  Stay close to the routes and make every hiking day count
+                </h3>
+                <p className="text-primary-foreground/85 leading-relaxed max-w-2xl">
+                  Our Grevenmacher apartment gives you quick access to
+                  Mullerthal, Echternach, and Vianden, with the comfort to
+                  recover well after long trail days.
+                </p>
+
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <Button
+                    asChild
+                    className="rounded-lg bg-background text-primary hover:bg-background/90"
+                  >
+                    <a href={airbnbUrl} target="_blank" rel="noopener noreferrer">
+                      Check Availability
+                      <ExternalLink className="h-4 w-4" />
+                    </a>
+                  </Button>
+                  <Button
+                    variant="outline"
+                    asChild
+                    className="rounded-lg border-primary-foreground/35 bg-transparent text-primary-foreground hover:bg-primary-foreground/10"
+                  >
+                    <Link href="/#listing">View Apartment Details</Link>
+                  </Button>
+                </div>
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+                <article className="rounded-xl border border-primary-foreground/20 bg-primary-foreground/5 p-4">
+                  <div className="flex items-center gap-2 text-sm font-semibold text-primary-foreground mb-1">
+                    <MapPin className="h-4 w-4 text-primary" />
+                    Central Base
+                  </div>
+                  <p className="text-xs text-primary-foreground/70">
+                    Easy access to top hiking regions in Luxembourg.
+                  </p>
+                </article>
+
+                <article className="rounded-xl border border-primary-foreground/20 bg-primary-foreground/5 p-4">
+                  <div className="flex items-center gap-2 text-sm font-semibold text-primary-foreground mb-1">
+                    <Car className="h-4 w-4 text-primary" />
+                    Practical Access
+                  </div>
+                  <p className="text-xs text-primary-foreground/70">
+                    Parking and nearby services for smooth trail logistics.
+                  </p>
+                </article>
+
+                <article className="rounded-xl border border-primary-foreground/20 bg-primary-foreground/5 p-4">
+                  <div className="flex items-center gap-2 text-sm font-semibold text-primary-foreground mb-1">
+                    <BedDouble className="h-4 w-4 text-primary" />
+                    Recover Better
+                  </div>
+                  <p className="text-xs text-primary-foreground/70">
+                    Spacious layout for families and hiking groups up to 7
+                    guests.
+                  </p>
+                </article>
+              </div>
+            </div>
           </div>
         </div>
       </div>
