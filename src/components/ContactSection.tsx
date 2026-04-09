@@ -11,6 +11,13 @@ import { toast } from "sonner";
 import emailjs from "emailjs-com";
 
 export default function ContactSection() {
+  const emailServiceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+  const emailTemplateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+  const emailUserId = process.env.NEXT_PUBLIC_EMAILJS_USER_ID;
+  const isEmailConfigured = Boolean(
+    emailServiceId && emailTemplateId && emailUserId
+  );
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -27,19 +34,30 @@ export default function ContactSection() {
       return;
     }
 
+    if (!isEmailConfigured) {
+      toast.error(
+        "❌ Contact form is not configured yet. Please add EmailJS environment variables."
+      );
+      return;
+    }
+
+    const serviceId = emailServiceId as string;
+    const templateId = emailTemplateId as string;
+    const userId = emailUserId as string;
+
     setLoading(true);
     const toastId = toast.loading("Sending message...");
 
     emailjs
       .send(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string,
+        serviceId,
+        templateId,
         {
           name: formData.name,
           email: formData.email,
           title: formData.message, // or "message" depending on template
         },
-        process.env.NEXT_PUBLIC_EMAILJS_USER_ID as string
+        userId
       )
       .then(() => {
         toast.dismiss(toastId);
@@ -190,7 +208,7 @@ export default function ContactSection() {
                       type="submit"
                       size="lg"
                       className="w-full bg-primary hover:bg-primary-hover text-primary-foreground shadow-lg"
-                      disabled={loading}
+                      disabled={loading || !isEmailConfigured}
                     >
                       {loading ? (
                         <>
@@ -204,6 +222,15 @@ export default function ContactSection() {
                         </>
                       )}
                     </Button>
+                    {!isEmailConfigured && (
+                      <p className="text-xs text-muted-foreground">
+                        Contact form setup is missing. Add
+                        {" "}
+                        <span className="font-mono">NEXT_PUBLIC_EMAILJS_*</span>
+                        {" "}
+                        values in your environment.
+                      </p>
+                    )}
                   </form>
                 </CardContent>
               </Card>

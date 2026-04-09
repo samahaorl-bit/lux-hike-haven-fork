@@ -1,8 +1,10 @@
 import type { MetadataRoute } from "next";
 import { stat } from "node:fs/promises";
 import { join } from "node:path";
-import { getAllBlogPosts, getBlogPostPairs, getBlogPostPath } from "@/lib/blog";
+import { getAllBlogPosts, getBlogPostPath, getBlogPosts } from "@/lib/blog";
 import { absoluteUrl, isCanonicalProductionSite, seoRoutes } from "@/lib/site";
+
+export const revalidate = 3600;
 
 const routeSourceFiles: Record<string, string[]> = {
   [seoRoutes.home]: ["src/app/page.tsx"],
@@ -57,6 +59,41 @@ function getLatestBlogUpdatedAt(): Date {
   return new Date(Math.max(...timestamps));
 }
 
+function getLatestBlogUpdatedAtByLocale(locale: "en" | "nl"): Date {
+  const timestamps = getBlogPosts(locale)
+    .map((post) => new Date(post.updatedAt).getTime())
+    .filter((time) => Number.isFinite(time));
+
+  if (timestamps.length === 0) {
+    return fallbackLastModified;
+  }
+
+  return new Date(Math.max(...timestamps));
+}
+
+function getSafeDate(value: string | Date | undefined, fallback: Date): Date {
+  if (!value) {
+    return fallback;
+  }
+
+  const parsed = value instanceof Date ? value : new Date(value);
+  return Number.isNaN(parsed.getTime()) ? fallback : parsed;
+}
+
+function createPageEntry(
+  route: string,
+  routeLastModified: Map<string, Date>,
+  priority: number,
+  changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] = "weekly"
+): MetadataRoute.Sitemap[number] {
+  return {
+    url: absoluteUrl(route),
+    lastModified: routeLastModified.get(route) ?? fallbackLastModified,
+    changeFrequency,
+    priority,
+  };
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   if (!isCanonicalProductionSite) {
     return [];
@@ -71,228 +108,62 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const routeLastModified = new Map(routeLastModifiedEntries);
   const latestBlogUpdate = getLatestBlogUpdatedAt();
+  const latestEnBlogUpdate = getLatestBlogUpdatedAtByLocale("en");
+  const latestNlBlogUpdate = getLatestBlogUpdatedAtByLocale("nl");
 
   const staticPages: MetadataRoute.Sitemap = [
-    {
-      url: absoluteUrl(seoRoutes.home),
-      lastModified: routeLastModified.get(seoRoutes.home) ?? fallbackLastModified,
-      changeFrequency: "weekly",
-      priority: 1,
-    },
-    {
-      url: absoluteUrl(seoRoutes.enHub),
-      lastModified: routeLastModified.get(seoRoutes.enHub) ?? fallbackLastModified,
-      changeFrequency: "weekly",
-      priority: 0.9,
-      alternates: {
-        languages: {
-          en: absoluteUrl(seoRoutes.enHub),
-          "nl-NL": absoluteUrl(seoRoutes.nlHub),
-          "x-default": absoluteUrl(seoRoutes.nlHub),
-        },
-      },
-    },
-    {
-      url: absoluteUrl(seoRoutes.nlHub),
-      lastModified: routeLastModified.get(seoRoutes.nlHub) ?? fallbackLastModified,
-      changeFrequency: "weekly",
-      priority: 0.9,
-      alternates: {
-        languages: {
-          en: absoluteUrl(seoRoutes.enHub),
-          "nl-NL": absoluteUrl(seoRoutes.nlHub),
-          "x-default": absoluteUrl(seoRoutes.nlHub),
-        },
-      },
-    },
-    {
-      url: absoluteUrl(seoRoutes.enTrails),
-      lastModified: routeLastModified.get(seoRoutes.enTrails) ?? fallbackLastModified,
-      changeFrequency: "weekly",
-      priority: 0.85,
-      alternates: {
-        languages: {
-          en: absoluteUrl(seoRoutes.enTrails),
-          "nl-NL": absoluteUrl(seoRoutes.nlTrails),
-          "x-default": absoluteUrl(seoRoutes.nlTrails),
-        },
-      },
-    },
-    {
-      url: absoluteUrl(seoRoutes.nlTrails),
-      lastModified: routeLastModified.get(seoRoutes.nlTrails) ?? fallbackLastModified,
-      changeFrequency: "weekly",
-      priority: 0.85,
-      alternates: {
-        languages: {
-          en: absoluteUrl(seoRoutes.enTrails),
-          "nl-NL": absoluteUrl(seoRoutes.nlTrails),
-          "x-default": absoluteUrl(seoRoutes.nlTrails),
-        },
-      },
-    },
-    {
-      url: absoluteUrl(seoRoutes.nlWeekend),
-      lastModified: routeLastModified.get(seoRoutes.nlWeekend) ?? fallbackLastModified,
-      changeFrequency: "weekly",
-      priority: 0.82,
-      alternates: {
-        languages: {
-          en: absoluteUrl(seoRoutes.enHub),
-          "nl-NL": absoluteUrl(seoRoutes.nlWeekend),
-          "x-default": absoluteUrl(seoRoutes.nlWeekend),
-        },
-      },
-    },
-    {
-      url: absoluteUrl(seoRoutes.nlMullerthal),
-      lastModified: routeLastModified.get(seoRoutes.nlMullerthal) ?? fallbackLastModified,
-      changeFrequency: "weekly",
-      priority: 0.82,
-      alternates: {
-        languages: {
-          en: absoluteUrl(seoRoutes.enHub),
-          "nl-NL": absoluteUrl(seoRoutes.nlMullerthal),
-          "x-default": absoluteUrl(seoRoutes.nlMullerthal),
-        },
-      },
-    },
-    {
-      url: absoluteUrl(seoRoutes.nlStayNearTrails),
-      lastModified:
-        routeLastModified.get(seoRoutes.nlStayNearTrails) ?? fallbackLastModified,
-      changeFrequency: "weekly",
-      priority: 0.82,
-      alternates: {
-        languages: {
-          en: absoluteUrl(seoRoutes.enHub),
-          "nl-NL": absoluteUrl(seoRoutes.nlStayNearTrails),
-          "x-default": absoluteUrl(seoRoutes.nlStayNearTrails),
-        },
-      },
-    },
-    {
-      url: absoluteUrl(seoRoutes.nlFamily),
-      lastModified: routeLastModified.get(seoRoutes.nlFamily) ?? fallbackLastModified,
-      changeFrequency: "weekly",
-      priority: 0.81,
-      alternates: {
-        languages: {
-          en: absoluteUrl(seoRoutes.enHub),
-          "nl-NL": absoluteUrl(seoRoutes.nlFamily),
-          "x-default": absoluteUrl(seoRoutes.nlFamily),
-        },
-      },
-    },
-    {
-      url: absoluteUrl(seoRoutes.nlSeasonal),
-      lastModified: routeLastModified.get(seoRoutes.nlSeasonal) ?? fallbackLastModified,
-      changeFrequency: "weekly",
-      priority: 0.81,
-      alternates: {
-        languages: {
-          en: absoluteUrl(seoRoutes.enHub),
-          "nl-NL": absoluteUrl(seoRoutes.nlSeasonal),
-          "x-default": absoluteUrl(seoRoutes.nlSeasonal),
-        },
-      },
-    },
-    {
-      url: absoluteUrl(seoRoutes.nlBeginner),
-      lastModified: routeLastModified.get(seoRoutes.nlBeginner) ?? fallbackLastModified,
-      changeFrequency: "weekly",
-      priority: 0.81,
-      alternates: {
-        languages: {
-          en: absoluteUrl(seoRoutes.enHub),
-          "nl-NL": absoluteUrl(seoRoutes.nlBeginner),
-          "x-default": absoluteUrl(seoRoutes.nlBeginner),
-        },
-      },
-    },
-    {
-      url: absoluteUrl(seoRoutes.nlRainyDay),
-      lastModified: routeLastModified.get(seoRoutes.nlRainyDay) ?? fallbackLastModified,
-      changeFrequency: "weekly",
-      priority: 0.8,
-      alternates: {
-        languages: {
-          en: absoluteUrl(seoRoutes.enHub),
-          "nl-NL": absoluteUrl(seoRoutes.nlRainyDay),
-          "x-default": absoluteUrl(seoRoutes.nlRainyDay),
-        },
-      },
-    },
-    {
-      url: absoluteUrl(seoRoutes.photoTour),
-      lastModified: routeLastModified.get(seoRoutes.photoTour) ?? fallbackLastModified,
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
+    createPageEntry(seoRoutes.home, routeLastModified, 1),
+    createPageEntry(seoRoutes.enHub, routeLastModified, 0.9),
+    createPageEntry(seoRoutes.nlHub, routeLastModified, 0.9),
+    createPageEntry(seoRoutes.enTrails, routeLastModified, 0.85),
+    createPageEntry(seoRoutes.nlTrails, routeLastModified, 0.85),
+    createPageEntry(seoRoutes.nlWeekend, routeLastModified, 0.82),
+    createPageEntry(seoRoutes.nlMullerthal, routeLastModified, 0.82),
+    createPageEntry(seoRoutes.nlStayNearTrails, routeLastModified, 0.82),
+    createPageEntry(seoRoutes.nlFamily, routeLastModified, 0.81),
+    createPageEntry(seoRoutes.nlSeasonal, routeLastModified, 0.81),
+    createPageEntry(seoRoutes.nlBeginner, routeLastModified, 0.81),
+    createPageEntry(seoRoutes.nlRainyDay, routeLastModified, 0.8),
+    createPageEntry(seoRoutes.photoTour, routeLastModified, 0.7, "monthly"),
   ];
 
   const blogIndexPages: MetadataRoute.Sitemap = [
     {
       url: absoluteUrl(seoRoutes.enBlog),
-      lastModified: latestBlogUpdate,
+      lastModified: latestEnBlogUpdate,
       changeFrequency: "weekly",
       priority: 0.86,
-      alternates: {
-        languages: {
-          en: absoluteUrl(seoRoutes.enBlog),
-          "nl-NL": absoluteUrl(seoRoutes.nlBlog),
-          "x-default": absoluteUrl(seoRoutes.nlBlog),
-        },
-      },
     },
     {
       url: absoluteUrl(seoRoutes.nlBlog),
-      lastModified: latestBlogUpdate,
+      lastModified: latestNlBlogUpdate,
       changeFrequency: "weekly",
       priority: 0.89,
-      alternates: {
-        languages: {
-          en: absoluteUrl(seoRoutes.enBlog),
-          "nl-NL": absoluteUrl(seoRoutes.nlBlog),
-          "x-default": absoluteUrl(seoRoutes.nlBlog),
-        },
-      },
     },
   ];
 
-  const blogPosts: MetadataRoute.Sitemap = getBlogPostPairs().flatMap((pair) => {
-    const enUrl = absoluteUrl(getBlogPostPath("en", pair.en.slug));
-    const nlUrl = absoluteUrl(getBlogPostPath("nl", pair.nl.slug));
+  const seenBlogUrls = new Set<string>();
+  const blogPosts: MetadataRoute.Sitemap = getAllBlogPosts()
+    .map((post) => {
+      const url = absoluteUrl(getBlogPostPath(post.locale, post.slug));
+      const publishedAt = getSafeDate(post.publishedAt, latestBlogUpdate);
+      const updatedAt = getSafeDate(post.updatedAt, publishedAt);
 
-    return [
-      {
-        url: enUrl,
-        lastModified: new Date(pair.en.updatedAt),
-        changeFrequency: "weekly",
-        priority: 0.82,
-        alternates: {
-          languages: {
-            en: enUrl,
-            "nl-NL": nlUrl,
-            "x-default": nlUrl,
-          },
-        },
-      },
-      {
-        url: nlUrl,
-        lastModified: new Date(pair.nl.updatedAt),
-        changeFrequency: "weekly",
-        priority: 0.84,
-        alternates: {
-          languages: {
-            en: enUrl,
-            "nl-NL": nlUrl,
-            "x-default": nlUrl,
-          },
-        },
-      },
-    ];
-  });
+      return {
+        url,
+        lastModified: updatedAt,
+        changeFrequency: "weekly" as const,
+        priority: post.locale === "nl" ? 0.84 : 0.82,
+      };
+    })
+    .filter((entry) => {
+      if (seenBlogUrls.has(entry.url)) {
+        return false;
+      }
+
+      seenBlogUrls.add(entry.url);
+      return true;
+    });
 
   return [...staticPages, ...blogIndexPages, ...blogPosts];
 }

@@ -51,7 +51,7 @@ Operational SEO (indexing, CTR iteration, authority growth) is managed through t
 ## SEO architecture
 
 - Central SEO config and route map: `src/lib/site.ts`
-- Dynamic robots with production host guard: `src/app/robots.ts`
+- Dynamic robots route with production host guard: `src/app/robots.txt/route.ts`
 - Dynamic sitemap with alternates and content freshness: `src/app/sitemap.ts`
 - Metadata and site-level schema: `src/app/layout.tsx`
 - Redirect rules (www, slug canonicalization): `next.config.mjs`
@@ -80,7 +80,17 @@ Operational SEO (indexing, CTR iteration, authority growth) is managed through t
 
 ## Environment variables
 
-Create `.env.local` in project root:
+You only need a `.env.local` file if:
+- you want the contact form to send emails via EmailJS, or
+- you want to override canonical URL resolution locally.
+
+Start from the template:
+
+```bash
+cp .env.example .env.local
+```
+
+Then fill values as needed:
 
 ```env
 NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
@@ -148,7 +158,7 @@ src/
 	app/
 		page.tsx
 		layout.tsx
-		robots.ts
+		robots.txt/route.ts
 		sitemap.ts
 		en/
 		nl/

@@ -57,6 +57,9 @@ export const metadata: Metadata = {
   category: "travel",
   alternates: {
     canonical: seoRoutes.home,
+    types: {
+      "application/rss+xml": absoluteUrl("/feed.xml"),
+    },
   },
   openGraph: {
     title: "Lux Traveler | Hiking apartment in Grevenmacher",

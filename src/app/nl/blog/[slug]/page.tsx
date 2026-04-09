@@ -28,6 +28,14 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
 
   const translated = getTranslatedPost(post);
   const canonical = getBlogPostPath("nl", post.slug);
+  const languageAlternates: Record<string, string> = {
+    "nl-NL": canonical,
+    "x-default": canonical,
+  };
+
+  if (translated) {
+    languageAlternates.en = getBlogPostPath("en", translated.slug);
+  }
 
   return {
     title: post.title,
@@ -35,20 +43,14 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
     keywords: [post.focusKeyword, ...post.secondaryKeywords, ...post.tags],
     alternates: {
       canonical,
-      languages: {
-        "nl-NL": canonical,
-        en: translated
-          ? getBlogPostPath("en", translated.slug)
-          : seoRoutes.enBlog,
-        "x-default": canonical,
-      },
+      languages: languageAlternates,
     },
     openGraph: {
       title: post.title,
       description: post.description,
       url: absoluteUrl(canonical),
       locale: "nl_NL",
-      alternateLocale: ["en_US"],
+      alternateLocale: translated ? ["en_US"] : undefined,
       type: "article",
       publishedTime: post.publishedAt,
       modifiedTime: post.updatedAt,
