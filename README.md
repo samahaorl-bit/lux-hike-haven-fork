@@ -60,6 +60,7 @@ Operational SEO (indexing, CTR iteration, authority growth) is managed through t
 
 - `README.md` - project overview and setup
 - `APP_STRUCTURE.md` - current repository structure snapshot
+- `BLOG_AUTHORING_GUIDE.md` - step-by-step guide for adding EN/NL blog posts
 - `DEPLOY_INDEXING_CHECKLIST.txt` - post-deploy validation and indexing steps
 - `SEARCH_CONSOLE_SUBMISSION_PLAN.md` - prioritized URL submission queue and 14-day checks
 - `SEO_CTR_TEST_RUNBOOK.md` - monthly metadata testing and internal anchor refresh process

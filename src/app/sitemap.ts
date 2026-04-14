@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { stat } from "node:fs/promises";
 import { join } from "node:path";
-import { getAllBlogPosts, getBlogPostPath, getBlogPosts } from "@/lib/blog";
 import { absoluteUrl, isCanonicalProductionSite, seoRoutes } from "@/lib/site";
 
 export const revalidate = 3600;
@@ -26,6 +25,28 @@ const routeSourceFiles: Record<string, string[]> = {
 
 const fallbackLastModified = new Date();
 
+type SitemapBlogPost = {
+  locale: "en" | "nl";
+  slug: string;
+  publishedAt: string;
+  updatedAt: string;
+};
+
+type BlogSitemapModule = {
+  getAllBlogPosts: () => SitemapBlogPost[];
+  getBlogPosts: (locale: "en" | "nl") => SitemapBlogPost[];
+  getBlogPostPath: (locale: "en" | "nl", slug: string) => string;
+};
+
+async function loadBlogSitemapModule(): Promise<BlogSitemapModule | null> {
+  try {
+    return (await import("@/lib/blog")) as BlogSitemapModule;
+  } catch (error) {
+    console.error("Sitemap fallback: failed to load blog module.", error);
+    return null;
+  }
+}
+
 async function getLatestFileModifiedDate(files: string[]): Promise<Date> {
   const mtimes = await Promise.all(
     files.map(async (file) => {
@@ -49,8 +70,10 @@ async function getLatestFileModifiedDate(files: string[]): Promise<Date> {
   return new Date(Math.max(...validTimes));
 }
 
-function getLatestBlogUpdatedAt(): Date {
-  const timestamps = getAllBlogPosts().map((post) => new Date(post.updatedAt).getTime());
+function getLatestBlogUpdatedAt(posts: SitemapBlogPost[]): Date {
+  const timestamps = posts
+    .map((post) => new Date(post.updatedAt).getTime())
+    .filter((time) => Number.isFinite(time));
 
   if (timestamps.length === 0) {
     return fallbackLastModified;
@@ -59,8 +82,9 @@ function getLatestBlogUpdatedAt(): Date {
   return new Date(Math.max(...timestamps));
 }
 
-function getLatestBlogUpdatedAtByLocale(locale: "en" | "nl"): Date {
-  const timestamps = getBlogPosts(locale)
+function getLatestBlogUpdatedAtByLocale(posts: SitemapBlogPost[], locale: "en" | "nl"): Date {
+  const timestamps = posts
+    .filter((post) => post.locale === locale)
     .map((post) => new Date(post.updatedAt).getTime())
     .filter((time) => Number.isFinite(time));
 
@@ -99,6 +123,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     return [];
   }
 
+  const blogModule = await loadBlogSitemapModule();
+  const allBlogPosts = blogModule?.getAllBlogPosts() ?? [];
+
   const routeLastModifiedEntries = await Promise.all(
     Object.entries(routeSourceFiles).map(async ([route, files]) => {
       const lastModified = await getLatestFileModifiedDate(files);
@@ -107,9 +134,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   );
 
   const routeLastModified = new Map(routeLastModifiedEntries);
-  const latestBlogUpdate = getLatestBlogUpdatedAt();
-  const latestEnBlogUpdate = getLatestBlogUpdatedAtByLocale("en");
-  const latestNlBlogUpdate = getLatestBlogUpdatedAtByLocale("nl");
+  const latestBlogUpdate = getLatestBlogUpdatedAt(allBlogPosts);
+  const latestEnBlogUpdate = getLatestBlogUpdatedAtByLocale(allBlogPosts, "en");
+  const latestNlBlogUpdate = getLatestBlogUpdatedAtByLocale(allBlogPosts, "nl");
 
   const staticPages: MetadataRoute.Sitemap = [
     createPageEntry(seoRoutes.home, routeLastModified, 1),
@@ -143,9 +170,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   const seenBlogUrls = new Set<string>();
-  const blogPosts: MetadataRoute.Sitemap = getAllBlogPosts()
+  const blogPosts: MetadataRoute.Sitemap = allBlogPosts
     .map((post) => {
-      const url = absoluteUrl(getBlogPostPath(post.locale, post.slug));
+      const blogPath = blogModule?.getBlogPostPath(post.locale, post.slug) ?? `/${post.locale}/blog/${post.slug}`;
+      const url = absoluteUrl(blogPath);
       const publishedAt = getSafeDate(post.publishedAt, latestBlogUpdate);
       const updatedAt = getSafeDate(post.updatedAt, publishedAt);
 

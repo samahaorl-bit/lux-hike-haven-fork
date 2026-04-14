@@ -149,9 +149,9 @@ export default function BlogIndexContent({ locale }: BlogIndexContentProps) {
         </div>
       </section>
 
-      <section className="section-divider section-parallax-soft section-reveal container mx-auto px-4 py-14 sm:px-6 lg:px-8">
+      <section className="section-divider section-parallax-soft section-reveal container mx-auto px-4 py-12 sm:px-6 lg:px-8">
         {featured && (
-          <div className="section-reveal mb-8">
+          <div className="section-reveal mx-auto mb-8 max-w-5xl">
             <BlogCard
               post={featured}
               href={getBlogPostPath(locale, featured.slug)}
@@ -161,7 +161,7 @@ export default function BlogIndexContent({ locale }: BlogIndexContentProps) {
           </div>
         )}
 
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {rest.map((post, index) => (
             <div
               key={`${post.locale}-${post.slug}`}

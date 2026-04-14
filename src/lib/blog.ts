@@ -924,6 +924,125 @@ const blogPosts: BlogPost[] = [
   },
 ];
 
+function isNonEmptyString(value: string): boolean {
+  return value.trim().length > 0;
+}
+
+function isValidIsoDate(value: string): boolean {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    return false;
+  }
+
+  const parsed = new Date(value);
+  return !Number.isNaN(parsed.getTime());
+}
+
+function validateBlogPosts(posts: BlogPost[]): string[] {
+  const errors: string[] = [];
+  const slugKeys = new Set<string>();
+  const translationLocales = new Map<string, Set<BlogLocale>>();
+
+  posts.forEach((post, index) => {
+    const postLabel = `${post.locale}/${post.slug || `post-${index + 1}`}`;
+
+    if (!isNonEmptyString(post.translationKey)) {
+      errors.push(`[${postLabel}] translationKey is required.`);
+    }
+
+    if (!/^[-a-z0-9]+$/.test(post.slug)) {
+      errors.push(
+        `[${postLabel}] slug must be lowercase and use hyphens only (a-z, 0-9, -).`
+      );
+    }
+
+    const slugKey = `${post.locale}:${post.slug}`;
+    if (slugKeys.has(slugKey)) {
+      errors.push(`[${postLabel}] duplicate slug in locale ${post.locale}.`);
+    }
+    slugKeys.add(slugKey);
+
+    if (!isNonEmptyString(post.title)) {
+      errors.push(`[${postLabel}] title is required.`);
+    }
+
+    if (!isNonEmptyString(post.excerpt)) {
+      errors.push(`[${postLabel}] excerpt is required.`);
+    }
+
+    if (!isNonEmptyString(post.description)) {
+      errors.push(`[${postLabel}] description is required.`);
+    }
+
+    if (!post.coverImage.startsWith("/")) {
+      errors.push(`[${postLabel}] coverImage must be a site-relative path starting with '/'.`);
+    }
+
+    if (!isValidIsoDate(post.publishedAt)) {
+      errors.push(`[${postLabel}] publishedAt must be a valid YYYY-MM-DD date.`);
+    }
+
+    if (!isValidIsoDate(post.updatedAt)) {
+      errors.push(`[${postLabel}] updatedAt must be a valid YYYY-MM-DD date.`);
+    }
+
+    if (post.readingMinutes <= 0) {
+      errors.push(`[${postLabel}] readingMinutes must be greater than 0.`);
+    }
+
+    if (!isNonEmptyString(post.focusKeyword)) {
+      errors.push(`[${postLabel}] focusKeyword is required.`);
+    }
+
+    if (post.secondaryKeywords.length === 0) {
+      errors.push(`[${postLabel}] secondaryKeywords should include at least one keyword.`);
+    }
+
+    if (post.sections.length === 0) {
+      errors.push(`[${postLabel}] sections should include at least one section.`);
+    }
+
+    post.sections.forEach((section, sectionIndex) => {
+      if (!isNonEmptyString(section.title)) {
+        errors.push(`[${postLabel}] section ${sectionIndex + 1} title is required.`);
+      }
+
+      if (section.paragraphs.length === 0) {
+        errors.push(
+          `[${postLabel}] section ${sectionIndex + 1} should include at least one paragraph.`
+        );
+      }
+    });
+
+    if (post.faq.length === 0) {
+      errors.push(`[${postLabel}] faq should include at least one question.`);
+    }
+
+    const locales = translationLocales.get(post.translationKey) ?? new Set<BlogLocale>();
+    locales.add(post.locale);
+    translationLocales.set(post.translationKey, locales);
+  });
+
+  translationLocales.forEach((locales, key) => {
+    if (locales.size === 1 && process.env.NODE_ENV === "production") {
+      const onlyLocale = Array.from(locales)[0];
+      errors.push(
+        `[translationKey:${key}] only has ${onlyLocale}. Add the paired locale for complete bilingual SEO coverage.`
+      );
+    }
+
+    if (locales.size > 2) {
+      errors.push(`[translationKey:${key}] has more than two locales; expected en + nl only.`);
+    }
+  });
+
+  return errors;
+}
+
+const blogValidationErrors = validateBlogPosts(blogPosts);
+if (blogValidationErrors.length > 0) {
+  throw new Error(`Invalid blog content configuration:\n${blogValidationErrors.join("\n")}`);
+}
+
 export function getBlogPostPath(locale: BlogLocale, slug: string): string {
   return `/${locale}/blog/${slug}`;
 }

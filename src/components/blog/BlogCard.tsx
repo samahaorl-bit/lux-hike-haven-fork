@@ -24,43 +24,48 @@ export default function BlogCard({
   locale,
   featured = false,
 }: BlogCardProps) {
+  const tagLimit = featured ? 3 : 2;
+
   return (
     <article
       className={[
-        "group relative overflow-hidden rounded-3xl border border-border/70 bg-card/95 shadow-soft",
+        "group relative overflow-hidden rounded-2xl border border-border/70 bg-card/95 shadow-soft",
         "transition-all duration-300 hover:-translate-y-1 hover:shadow-medium",
-        featured ? "md:col-span-2" : "",
       ].join(" ")}
     >
       <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.08] via-transparent to-secondary/[0.08] opacity-70" />
 
-      <div className={featured ? "grid md:grid-cols-2" : ""}>
+      <div className={featured ? "grid md:grid-cols-[0.95fr_1.05fr] md:items-start" : ""}>
         <div
           className={
             featured
-              ? "relative aspect-[16/10] md:aspect-[4/3] md:self-start"
-              : "relative aspect-[16/10]"
+              ? "relative aspect-[4/3] md:aspect-[5/4]"
+              : "relative aspect-[4/3]"
           }
         >
           <Image
             src={post.coverImage}
             alt={post.coverImageAlt ?? post.title}
             fill
-            sizes={featured ? "(max-width: 768px) 100vw, 50vw" : "(max-width: 768px) 100vw, 33vw"}
+            sizes={
+              featured
+                ? "(max-width: 768px) 100vw, (max-width: 1280px) 56vw, 46vw"
+                : "(max-width: 768px) 100vw, (max-width: 1280px) 48vw, 30vw"
+            }
             className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
-          <div className="absolute left-4 top-4 inline-flex rounded-full border border-white/35 bg-white/15 px-3 py-1 text-xs font-semibold text-white backdrop-blur-md">
+          <div className="absolute left-3 top-3 inline-flex rounded-full border border-white/35 bg-white/15 px-2.5 py-1 text-[11px] font-semibold text-white backdrop-blur-md">
             {post.category}
           </div>
         </div>
 
-        <div className="relative p-6 md:p-7">
-          <div className="mb-3 flex flex-wrap gap-2">
-            {post.tags.slice(0, 3).map((tag) => (
+        <div className={featured ? "relative p-5 md:p-6" : "relative p-4 md:p-5"}>
+          <div className="mb-2.5 flex flex-wrap gap-2">
+            {post.tags.slice(0, tagLimit).map((tag) => (
               <span
                 key={tag}
-                className="inline-flex rounded-full border border-border/70 bg-background/70 px-3 py-1 text-xs font-semibold text-muted-foreground"
+                className="inline-flex rounded-full border border-border/70 bg-background/70 px-2.5 py-1 text-[11px] font-semibold text-muted-foreground"
               >
                 {tag}
               </span>
@@ -70,7 +75,7 @@ export default function BlogCard({
           <h3
             className={[
               "font-bold leading-tight text-foreground",
-              featured ? "text-2xl md:text-3xl" : "text-xl",
+              featured ? "text-xl md:text-2xl" : "text-lg md:text-xl",
             ].join(" ")}
           >
             <Link href={href} className="hover:text-primary transition-colors">
@@ -78,26 +83,26 @@ export default function BlogCard({
             </Link>
           </h3>
 
-          <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{post.excerpt}</p>
+          <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">{post.excerpt}</p>
 
-          <div className="mt-5 flex flex-wrap items-center gap-4 text-xs text-muted-foreground">
+          <div className="mt-4 flex flex-wrap items-center gap-3 text-[11px] text-muted-foreground">
             <span className="inline-flex items-center gap-1.5">
-              <CalendarDays className="h-3.5 w-3.5" />
+              <CalendarDays className="h-3 w-3" />
               {formatDate(locale, post.publishedAt)}
             </span>
             <span className="inline-flex items-center gap-1.5">
-              <Clock3 className="h-3.5 w-3.5" />
+              <Clock3 className="h-3 w-3" />
               {post.readingMinutes} min
             </span>
           </div>
 
-          <div className="mt-6">
+          <div className="mt-4">
             <Link
               href={href}
-              className="inline-flex items-center gap-2 rounded-full border border-primary/35 bg-primary/10 px-4 py-2 text-sm font-semibold text-primary transition-all duration-200 hover:bg-primary hover:text-primary-foreground"
+              className="inline-flex items-center gap-2 rounded-full border border-primary/35 bg-primary/10 px-3.5 py-1.5 text-xs font-semibold text-primary transition-all duration-200 hover:bg-primary hover:text-primary-foreground"
             >
               {locale === "nl" ? "Lees artikel" : "Read article"}
-              <ArrowUpRight className="h-4 w-4" />
+              <ArrowUpRight className="h-3.5 w-3.5" />
             </Link>
           </div>
         </div>
