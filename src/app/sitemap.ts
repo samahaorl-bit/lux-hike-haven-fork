@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { stat } from "node:fs/promises";
 import { join } from "node:path";
-import { absoluteUrl, isCanonicalProductionSite, seoRoutes } from "@/lib/site";
+import { absoluteUrl, seoRoutes } from "@/lib/site";
 
 export const revalidate = 3600;
 
@@ -23,13 +23,59 @@ const routeSourceFiles: Record<string, string[]> = {
   [seoRoutes.photoTour]: ["src/app/photo-tour/page.tsx"],
 };
 
+const routeAlternates: Record<string, Record<string, string>> = {
+  [seoRoutes.home]: {
+    en: seoRoutes.enHub,
+    "nl-NL": seoRoutes.nlHub,
+    "x-default": seoRoutes.home,
+  },
+  [seoRoutes.enHub]: {
+    en: seoRoutes.enHub,
+    "nl-NL": seoRoutes.nlHub,
+    "x-default": seoRoutes.nlHub,
+  },
+  [seoRoutes.nlHub]: {
+    "nl-NL": seoRoutes.nlHub,
+    en: seoRoutes.enHub,
+    "x-default": seoRoutes.nlHub,
+  },
+  [seoRoutes.enTrails]: {
+    en: seoRoutes.enTrails,
+    "nl-NL": seoRoutes.nlTrails,
+    "x-default": seoRoutes.nlTrails,
+  },
+  [seoRoutes.nlTrails]: {
+    "nl-NL": seoRoutes.nlTrails,
+    en: seoRoutes.enTrails,
+    "x-default": seoRoutes.nlTrails,
+  },
+  [seoRoutes.enBlog]: {
+    en: seoRoutes.enBlog,
+    "nl-NL": seoRoutes.nlBlog,
+    "x-default": seoRoutes.nlBlog,
+  },
+  [seoRoutes.nlBlog]: {
+    "nl-NL": seoRoutes.nlBlog,
+    en: seoRoutes.enBlog,
+    "x-default": seoRoutes.nlBlog,
+  },
+};
+
 const fallbackLastModified = new Date();
 
 type SitemapBlogPost = {
+  translationKey: string;
   locale: "en" | "nl";
   slug: string;
   publishedAt: string;
   updatedAt: string;
+};
+
+type SitemapLanguageAlternates = Record<string, string>;
+
+type BlogTranslationEntry = {
+  en?: SitemapBlogPost;
+  nl?: SitemapBlogPost;
 };
 
 type BlogSitemapModule = {
@@ -104,25 +150,102 @@ function getSafeDate(value: string | Date | undefined, fallback: Date): Date {
   return Number.isNaN(parsed.getTime()) ? fallback : parsed;
 }
 
+function toAbsoluteAlternates(
+  alternates?: SitemapLanguageAlternates
+): SitemapLanguageAlternates | undefined {
+  if (!alternates) {
+    return undefined;
+  }
+
+  return Object.fromEntries(
+    Object.entries(alternates).map(([locale, path]) => [locale, absoluteUrl(path)])
+  );
+}
+
+function createBlogTranslationMap(posts: SitemapBlogPost[]): Map<string, BlogTranslationEntry> {
+  const byTranslationKey = new Map<string, BlogTranslationEntry>();
+
+  for (const post of posts) {
+    const existing = byTranslationKey.get(post.translationKey) ?? {};
+    existing[post.locale] = post;
+    byTranslationKey.set(post.translationKey, existing);
+  }
+
+  return byTranslationKey;
+}
+
+function getBlogPostPath(
+  blogModule: BlogSitemapModule | null,
+  locale: "en" | "nl",
+  slug: string
+): string {
+  return blogModule?.getBlogPostPath(locale, slug) ?? `/${locale}/blog/${slug}`;
+}
+
+function getBlogAlternates(
+  post: SitemapBlogPost,
+  blogModule: BlogSitemapModule | null,
+  blogTranslations: Map<string, BlogTranslationEntry>
+): SitemapLanguageAlternates {
+  const canonical = getBlogPostPath(blogModule, post.locale, post.slug);
+  const translationPair = blogTranslations.get(post.translationKey);
+
+  if (post.locale === "en") {
+    const dutchPath = translationPair?.nl
+      ? getBlogPostPath(blogModule, "nl", translationPair.nl.slug)
+      : undefined;
+    const alternates: SitemapLanguageAlternates = {
+      en: canonical,
+      "x-default": dutchPath ?? canonical,
+    };
+
+    if (dutchPath) {
+      alternates["nl-NL"] = dutchPath;
+    }
+
+    return alternates;
+  }
+
+  const englishPath = translationPair?.en
+    ? getBlogPostPath(blogModule, "en", translationPair.en.slug)
+    : undefined;
+  const alternates: SitemapLanguageAlternates = {
+    "nl-NL": canonical,
+    "x-default": canonical,
+  };
+
+  if (englishPath) {
+    alternates.en = englishPath;
+  }
+
+  return alternates;
+}
+
 function createPageEntry(
   route: string,
   routeLastModified: Map<string, Date>,
   priority: number,
-  changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] = "weekly"
+  changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"] = "weekly",
+  alternates?: SitemapLanguageAlternates
 ): MetadataRoute.Sitemap[number] {
+  const absoluteAlternates = toAbsoluteAlternates(alternates);
+
   return {
     url: absoluteUrl(route),
     lastModified: routeLastModified.get(route) ?? fallbackLastModified,
     changeFrequency,
     priority,
+    ...(absoluteAlternates
+      ? {
+          alternates: {
+            languages: absoluteAlternates,
+          },
+        }
+      : {}),
   };
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  if (!isCanonicalProductionSite) {
-    return [];
-  }
-
   const blogModule = await loadBlogSitemapModule();
   const allBlogPosts = blogModule?.getAllBlogPosts() ?? [];
 
@@ -137,13 +260,38 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const latestBlogUpdate = getLatestBlogUpdatedAt(allBlogPosts);
   const latestEnBlogUpdate = getLatestBlogUpdatedAtByLocale(allBlogPosts, "en");
   const latestNlBlogUpdate = getLatestBlogUpdatedAtByLocale(allBlogPosts, "nl");
+  const blogTranslations = createBlogTranslationMap(allBlogPosts);
 
   const staticPages: MetadataRoute.Sitemap = [
-    createPageEntry(seoRoutes.home, routeLastModified, 1),
-    createPageEntry(seoRoutes.enHub, routeLastModified, 0.9),
-    createPageEntry(seoRoutes.nlHub, routeLastModified, 0.9),
-    createPageEntry(seoRoutes.enTrails, routeLastModified, 0.85),
-    createPageEntry(seoRoutes.nlTrails, routeLastModified, 0.85),
+    createPageEntry(seoRoutes.home, routeLastModified, 1, "weekly", routeAlternates[seoRoutes.home]),
+    createPageEntry(
+      seoRoutes.enHub,
+      routeLastModified,
+      0.9,
+      "weekly",
+      routeAlternates[seoRoutes.enHub]
+    ),
+    createPageEntry(
+      seoRoutes.nlHub,
+      routeLastModified,
+      0.9,
+      "weekly",
+      routeAlternates[seoRoutes.nlHub]
+    ),
+    createPageEntry(
+      seoRoutes.enTrails,
+      routeLastModified,
+      0.85,
+      "weekly",
+      routeAlternates[seoRoutes.enTrails]
+    ),
+    createPageEntry(
+      seoRoutes.nlTrails,
+      routeLastModified,
+      0.85,
+      "weekly",
+      routeAlternates[seoRoutes.nlTrails]
+    ),
     createPageEntry(seoRoutes.nlWeekend, routeLastModified, 0.82),
     createPageEntry(seoRoutes.nlMullerthal, routeLastModified, 0.82),
     createPageEntry(seoRoutes.nlStayNearTrails, routeLastModified, 0.82),
@@ -160,28 +308,40 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: latestEnBlogUpdate,
       changeFrequency: "weekly",
       priority: 0.86,
+      alternates: {
+        languages: toAbsoluteAlternates(routeAlternates[seoRoutes.enBlog]),
+      },
     },
     {
       url: absoluteUrl(seoRoutes.nlBlog),
       lastModified: latestNlBlogUpdate,
       changeFrequency: "weekly",
       priority: 0.89,
+      alternates: {
+        languages: toAbsoluteAlternates(routeAlternates[seoRoutes.nlBlog]),
+      },
     },
   ];
 
   const seenBlogUrls = new Set<string>();
   const blogPosts: MetadataRoute.Sitemap = allBlogPosts
     .map((post) => {
-      const blogPath = blogModule?.getBlogPostPath(post.locale, post.slug) ?? `/${post.locale}/blog/${post.slug}`;
+      const blogPath = getBlogPostPath(blogModule, post.locale, post.slug);
       const url = absoluteUrl(blogPath);
       const publishedAt = getSafeDate(post.publishedAt, latestBlogUpdate);
       const updatedAt = getSafeDate(post.updatedAt, publishedAt);
+      const alternates = toAbsoluteAlternates(
+        getBlogAlternates(post, blogModule, blogTranslations)
+      );
 
       return {
         url,
         lastModified: updatedAt,
         changeFrequency: "weekly" as const,
         priority: post.locale === "nl" ? 0.84 : 0.82,
+        alternates: {
+          languages: alternates,
+        },
       };
     })
     .filter((entry) => {
