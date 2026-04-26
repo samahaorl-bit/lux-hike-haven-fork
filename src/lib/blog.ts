@@ -50,7 +50,7 @@ const blogPosts: BlogPost[] = [
       "Alles wat Nederlandse reizigers moeten weten over routes, regio's en planning voor een sterke wandelvakantie in Luxemburg.",
     description:
       "Complete Nederlandstalige gids voor wandelen in Luxemburg. Gericht op zoekintentie zoals 'wanderen in Luxembourg' met routes, reistips en verblijfsadvies.",
-    coverImage: "/Central-stylish/dinning-room.avif",
+    coverImage: "/hero-luxembourg.jpg",
     publishedAt: "2026-03-18",
     updatedAt: "2026-04-07",
     readingMinutes: 9,
@@ -151,7 +151,7 @@ const blogPosts: BlogPost[] = [
       "A practical planning guide for travelers from the Netherlands looking for the best trails, logistics, and stays in Luxembourg.",
     description:
       "English guide targeting Dutch travel intent around 'wanderen in Luxembourg' with route planning, travel logistics, and accommodation strategy.",
-    coverImage: "/Central-stylish/dinning-room.avif",
+    coverImage: "/hero-luxembourg.jpg",
     publishedAt: "2026-03-18",
     updatedAt: "2026-04-07",
     readingMinutes: 9,
@@ -252,7 +252,7 @@ const blogPosts: BlogPost[] = [
       "Praktische gids voor Nederlandse hondeneigenaren met routekeuzes, voorbereiding en lokale tips voor een veilige wandeltrip.",
     description:
       "Nederlandse gids voor wandelen in Luxemburg met de hond. Inclusief hondvriendelijke routes, voorbereiding en reisadvies vanuit Nederland.",
-    coverImage: "/Central-stylish/24b60b66-902c-4a16-9858-5c106b7f55cd.avif",
+    coverImage: "/hero-luxembourg-2.jpg",
     publishedAt: "2026-03-25",
     updatedAt: "2026-04-07",
     readingMinutes: 7,
@@ -345,7 +345,7 @@ const blogPosts: BlogPost[] = [
       "A practical field guide for Dutch travelers bringing their dog on a hiking weekend in Luxembourg.",
     description:
       "English article focused on Dutch search intent for dog-friendly hiking in Luxembourg, including route planning and travel preparation.",
-    coverImage: "/Central-stylish/24b60b66-902c-4a16-9858-5c106b7f55cd.avif",
+    coverImage: "/hero-luxembourg-2.jpg",
     publishedAt: "2026-03-25",
     updatedAt: "2026-04-07",
     readingMinutes: 7,
@@ -438,7 +438,7 @@ const blogPosts: BlogPost[] = [
       "Een praktische shortlist voor Nederlandse reizigers die Mullerthal willen combineren met hondvriendelijke overnachtingsopties.",
     description:
       "Vind hondvriendelijke campings langs de Mullerthal Trail en plan een wandelvakantie in Luxemburg vanuit Nederland met minder uitzoekwerk.",
-    coverImage: "/Central-stylish/1e4b906d-5c3d-45a9-87ce-63f81762d010.avif",
+    coverImage: "/hero-luxembourg-3.jpg",
     publishedAt: "2026-03-29",
     updatedAt: "2026-04-07",
     readingMinutes: 8,
@@ -521,7 +521,7 @@ const blogPosts: BlogPost[] = [
       "A practical shortlist for Dutch travelers planning a dog-friendly hiking trip around Luxembourg's most famous trail region.",
     description:
       "English guide to dog-friendly campsite planning near Mullerthal Trail, aligned with Dutch traveler search intent.",
-    coverImage: "/Central-stylish/1e4b906d-5c3d-45a9-87ce-63f81762d010.avif",
+    coverImage: "/hero-luxembourg-3.jpg",
     publishedAt: "2026-03-29",
     updatedAt: "2026-04-07",
     readingMinutes: 8,
@@ -603,7 +603,7 @@ const blogPosts: BlogPost[] = [
       "Stap-voor-stap weekendplanning voor Nederlandse toeristen: reistijd, routekeuze en slimme overnachtingsstrategie.",
     description:
       "Plan een wandelweekend in Luxemburg vanuit Holland met een praktisch schema, reistips en routes voor 2-4 dagen.",
-    coverImage: "/Central-stylish/e13b7deb-e11f-41e1-8a22-e3b1beb379dc.avif",
+    coverImage: "/hero-luxembourg-4.jpg",
     publishedAt: "2026-04-02",
     updatedAt: "2026-04-07",
     readingMinutes: 6,
@@ -685,7 +685,7 @@ const blogPosts: BlogPost[] = [
       "A step-by-step framework for Dutch travelers to plan efficient 2-4 day hiking breaks in Luxembourg.",
     description:
       "English weekend planning guide focused on Dutch traveler intent for short hiking trips from Holland to Luxembourg.",
-    coverImage: "/Central-stylish/e13b7deb-e11f-41e1-8a22-e3b1beb379dc.avif",
+    coverImage: "/hero-luxembourg-4.jpg",
     publishedAt: "2026-04-02",
     updatedAt: "2026-04-07",
     readingMinutes: 6,
@@ -767,7 +767,7 @@ const blogPosts: BlogPost[] = [
       "Zo gebruik je het gratis OV-systeem slim tijdens een wandelvakantie in Luxemburg, inclusief tips voor routecombinaties.",
     description:
       "Nederlandse gids over gratis openbaar vervoer in Luxemburg voor wandelaars. Gericht op praktische planning en lokale routecombinaties.",
-    coverImage: "/Central-stylish/5e01f156-3612-49d9-914c-3c2176d4c9c6.avif",
+    coverImage: "/trail-1.jpg",
     publishedAt: "2026-04-05",
     updatedAt: "2026-04-07",
     readingMinutes: 6,
@@ -849,7 +849,7 @@ const blogPosts: BlogPost[] = [
       "How to use Luxembourg's free transport network to build smarter hiking itineraries with fewer logistics bottlenecks.",
     description:
       "English logistics guide for Dutch hikers on using free public transport in Luxembourg to optimize route planning.",
-    coverImage: "/Central-stylish/5e01f156-3612-49d9-914c-3c2176d4c9c6.avif",
+    coverImage: "/trail-1.jpg",
     publishedAt: "2026-04-05",
     updatedAt: "2026-04-07",
     readingMinutes: 6,
@@ -922,6 +922,784 @@ const blogPosts: BlogPost[] = [
       },
     ],
   },
+  {
+    translationKey: "family-friendly-hikes",
+    locale: "nl",
+    slug: "wandelen-in-luxemburg-met-kinderen-leuke-routes",
+    title: "Wandelen in Luxemburg met kinderen: leuke en veilige routes",
+    excerpt:
+      "Trek er met het gezin op uit! Ontdek de leukste, kindvriendelijke wandelroutes in Luxemburg die voor elke leeftijd haalbaar zijn.",
+    description:
+      "Een complete gids voor Nederlandse gezinnen: kindvriendelijke wandelroutes, praktische tips en avontuurlijke paden voor wandelen in Luxemburg met kinderen.",
+    coverImage: "/trail-2.jpg",
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    readingMinutes: 6,
+    category: "Family",
+    focusKeyword: "wandelen in Luxemburg met kinderen",
+    secondaryKeywords: [
+      "kindvriendelijke wandelroutes Luxemburg",
+      "wandelvakantie met gezin Luxemburg",
+      "korte routes Mullerthal kinderen",
+    ],
+    tags: ["gezin", "kinderen", "Mullerthal", "korte routes"],
+    routeHighlights: [
+      "Beaufort Kasteel Route",
+      "Schiessentümpel Waterval loop",
+      "Echternach Meer voor kinderwagens",
+    ],
+    logisticsHighlights: [
+      "Gratis openbaar vervoer voor het hele gezin",
+      "Veel routes hebben speeltuinen of picknickplaatsen",
+      "Grevenmacher is een rustige, centrale plek om te overnachten",
+    ],
+    sections: [
+      {
+        title: "Waarom Luxemburg perfect is voor een wandelvakantie met het gezin",
+        paragraphs: [
+          "Vergeet lange autoritten naar de Alpen. Binnen een paar uur rijden vanuit Nederland of België ben je in een sprookjesachtige, bosrijke omgeving waar kinderen zich direct thuis voelen.",
+          "De routes in Luxemburg, vooral in de regio Mullerthal, lijken ontworpen voor kleine avonturiers. Klimmen over rotsen en spelen bij watervallen houdt ze gemotiveerd.",
+        ],
+      },
+      {
+        title: "Praktische tips: Wandelen met kinderen in de praktijk",
+        paragraphs: [
+          "Kinderen lopen anders dan volwassenen. Plan kortere afstanden in, neem voldoende pauzes en zorg voor veel snacks.",
+        ],
+        bullets: [
+          "Kies voor routes van 3 tot 6 kilometer, afhankelijk van de leeftijd.",
+          "Vergeet niet een draagzak of lichte buggy mee te nemen als je kleintjes hebt (check wel vooraf of de route vlak is).",
+          "Maak gebruik van de vele picknicktafels onderweg.",
+        ],
+      },
+      {
+        title: "Een comfortabele uitvalsbasis",
+        paragraphs: [
+          "Niets is fijner dan na een intensieve wandeldag terug te keren naar een comfortabel appartement. Grevenmacher biedt de perfecte balans tussen rust en de nabijheid van de actie.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Zijn er wandelroutes in Luxemburg geschikt voor kinderwagens?",
+        answer:
+          "Zeker! Het meer van Echternach heeft uitstekende, verharde paden die volledig drempelvrij zijn.",
+      },
+      {
+        question: "Is de Mullerthal Trail geschikt voor kinderen?",
+        answer:
+          "Niet de hele trail, maar er zijn veel korte, spectaculaire lussen die perfect zijn voor kinderen die van klimmen en klauteren houden.",
+      },
+    ],
+    attractionSchema: [
+      {
+        name: "Schiessentümpel",
+        description: "Beroemde waterval in Mullerthal, perfect voor een korte gezinswandeling.",
+        locality: "Mullerthal",
+      },
+    ],
+  },
+  {
+    translationKey: "family-friendly-hikes",
+    locale: "en",
+    slug: "hiking-in-luxembourg-with-kids-fun-safe-routes",
+    title: "Hiking in Luxembourg with Kids: Fun and Safe Routes",
+    excerpt:
+      "Take the family outdoors! Discover the best family-friendly hiking trails in Luxembourg that are accessible and exciting for all ages.",
+    description:
+      "A complete guide for families: find child-friendly hiking routes, practical tips, and adventurous paths for hiking in Luxembourg with kids.",
+    coverImage: "/trail-2.jpg",
+    publishedAt: "2026-04-10",
+    updatedAt: "2026-04-10",
+    readingMinutes: 6,
+    category: "Family",
+    focusKeyword: "hiking in Luxembourg with kids",
+    secondaryKeywords: [
+      "family friendly trails Luxembourg",
+      "hiking with children Mullerthal",
+      "short routes Luxembourg",
+    ],
+    tags: ["family", "children", "Mullerthal", "short routes"],
+    routeHighlights: [
+      "Beaufort Castle Route",
+      "Schiessentümpel Waterfall loop",
+      "Echternach Lake (stroller accessible)",
+    ],
+    logisticsHighlights: [
+      "Free public transport for the entire family",
+      "Many routes feature playgrounds and picnic spots",
+      "Grevenmacher is a peaceful, central basecamp",
+    ],
+    sections: [
+      {
+        title: "Why Luxembourg is the perfect family hiking destination",
+        paragraphs: [
+          "Skip the grueling drive to the Alps. Just a few hours from the Netherlands and Belgium lies a fairytale woodland environment that kids absolutely love.",
+          "The trails, especially in the Mullerthal region, feel like they were made for tiny explorers. Climbing rocks and exploring waterfalls keeps their spirits high.",
+        ],
+      },
+      {
+        title: "Practical advice: Managing kids on the trail",
+        paragraphs: [
+          "Kids hike differently than adults. Keep distances short, plan frequent breaks, and never run out of snacks.",
+        ],
+        bullets: [
+          "Aim for 3 to 6-kilometer loops depending on age.",
+          "Consider child carriers rather than strollers for rocky Mullerthal paths.",
+          "Use the abundant picnic areas for rest stops.",
+        ],
+      },
+      {
+        title: "A cozy basecamp",
+        paragraphs: [
+          "After an active day, returning to a comfortable apartment is a blessing. Grevenmacher strikes a great balance between relaxing surroundings and immediate access to adventure.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Are there stroller-friendly hikes in Luxembourg?",
+        answer:
+          "Yes! The perimeter of Echternach Lake features fully paved, flat paths ideal for strollers.",
+      },
+      {
+        question: "Is the Mullerthal Trail safe for children?",
+        answer:
+          "While the full multi-day trail is too much, many of the short connector loops are fantastic and safe for adventurous kids.",
+      },
+    ],
+    attractionSchema: [
+      {
+        name: "Schiessentümpel",
+        description: "Famous waterfall in the Mullerthal region, perfect for short family hikes.",
+        locality: "Mullerthal",
+      },
+    ],
+  },
+  {
+    translationKey: "winter-hiking",
+    locale: "nl",
+    slug: "wandelen-in-luxemburg-in-de-winter-magische-routes",
+    title: "Wandelen in Luxemburg in de winter: geniet van rust en magie",
+    excerpt:
+      "Trek je warmste trui aan! De winter transformeert Luxemburg in een stil, sprookjesachtig wandeldecor. Lees onze wintergids.",
+    description:
+      "Ontdek hoe prachtig wandelen in Luxemburg in de winter kan zijn. Praktische tips, geopende routes en kledingadvies voor koude dagen.",
+    coverImage: "/trail-3.jpg",
+    publishedAt: "2026-04-12",
+    updatedAt: "2026-04-12",
+    readingMinutes: 5,
+    category: "Seasonal",
+    focusKeyword: "wandelen in Luxemburg winter",
+    secondaryKeywords: [
+      "winter wandelvakantie Luxemburg",
+      "Mullerthal in de winter",
+      "wandelen december Luxemburg",
+    ],
+    tags: ["winter", "seizoenen", "rust", "Mullerthal"],
+    routeHighlights: [
+      "Besneeuwde paden in Mullerthal",
+      "Kasteel van Vianden in de mist",
+      "Stille bossen rond Beaufort",
+    ],
+    logisticsHighlights: [
+      "Korte dagen vereisen vroege start",
+      "Zorg voor goede wandelschoenen met veel grip",
+      "Warme chocolademelk stopt langs de route",
+    ],
+    sections: [
+      {
+        title: "De magie van het winterse landschap",
+        paragraphs: [
+          "Wandelen in Luxemburg in de winter is een totaal andere ervaring dan in de zomer. De bossen zijn stiller, en als je geluk hebt bedekt een laagje sneeuw de rotsformaties.",
+          "Veruit het grootste voordeel? Je hebt de normaal drukke trails bijna helemaal voor jezelf. Ideaal om compleet te ontstressen.",
+        ],
+      },
+      {
+        title: "Tips voor winterwandelaars",
+        paragraphs: [
+          "Winterwandelingen vereisen iets meer voorbereiding. Het kan glad zijn en de zon gaat vroeg onder.",
+        ],
+        bullets: [
+          "Draag laagjeskleding (thermo, fleece, wind/waterdicht).",
+          "Neem een thermoskan met warme drank mee.",
+          "Houd de weersvoorspelling goed in de gaten in verband met vorst op stenen trappen.",
+        ],
+      },
+      {
+        title: "Terugkomen in een warm appartement",
+        paragraphs: [
+          "Na uren in de kou te hebben gelopen, is een warme douche en een knusse zithoek precies wat je nodig hebt. Onze uitvalsbasis biedt alle wintercomfort.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Is de Mullerthal Trail open in de winter?",
+        answer:
+          "Ja, maar wees op je hoede bij vorst, aangezien de rotsachtige trappen dan heel glad kunnen worden.",
+      },
+      {
+        question: "Liggen er vaak sneeuwbuien in Luxemburg?",
+        answer:
+          "In de hogere delen, zoals het noorden van Luxemburg en rond Mullerthal, is de kans op sneeuw aanwezig, wat zorgt voor een prachtig landschap.",
+      },
+    ],
+    attractionSchema: [
+      {
+        name: "Beaufort Winter Forest",
+        description: "Prachtig bosgebied bij Beaufort dat in de winter transformeert in een winter wonderland.",
+        locality: "Beaufort",
+      },
+    ],
+  },
+  {
+    translationKey: "winter-hiking",
+    locale: "en",
+    slug: "hiking-in-luxembourg-in-winter-magical-routes",
+    title: "Hiking in Luxembourg in Winter: Enjoy Peace and Magic",
+    excerpt:
+      "Bundle up! Winter transforms Luxembourg into a quiet, fairytale hiking backdrop. Read our comprehensive winter guide.",
+    description:
+      "Discover the beauty of hiking in Luxembourg in winter. Practical tips, open routes, and gear advice for cold but stunning days.",
+    coverImage: "/trail-3.jpg",
+    publishedAt: "2026-04-12",
+    updatedAt: "2026-04-12",
+    readingMinutes: 5,
+    category: "Seasonal",
+    focusKeyword: "hiking in Luxembourg winter",
+    secondaryKeywords: [
+      "winter walking holiday Luxembourg",
+      "Mullerthal in winter",
+      "hiking december Luxembourg",
+    ],
+    tags: ["winter", "seasonal", "quiet", "Mullerthal"],
+    routeHighlights: [
+      "Snow-dusted paths in Mullerthal",
+      "Vianden Castle in the mist",
+      "Silent forests around Beaufort",
+    ],
+    logisticsHighlights: [
+      "Shorter daylight means earlier starts",
+      "Requires proper hiking boots with excellent grip",
+      "Hot chocolate breaks along the trails",
+    ],
+    sections: [
+      {
+        title: "The magic of the winter landscape",
+        paragraphs: [
+          "Winter hiking in Luxembourg offers a completely different vibe compared to summer. The forests are silent, and a dusting of snow makes the rock formations look spectacular.",
+          "The biggest advantage? The normally busy trails are practically empty, allowing for true relaxation and immersion in nature.",
+        ],
+      },
+      {
+        title: "Tips for winter hikers",
+        paragraphs: [
+          "Crisp winter walks demand a bit more preparation. Paths can be slippery and daylight is scarce.",
+        ],
+        bullets: [
+          "Dress in layers (base layer, fleece, wind/waterproof shell).",
+          "Carry a thermos with coffee or hot tea.",
+          "Keep an eye on the forecast, especially concerning frost on stone steps.",
+        ],
+      },
+      {
+        title: "Returning to a warm apartment",
+        paragraphs: [
+          "After hours in the brisk air, a hot shower and a plush sofa are exactly what you need. Our basecamp provides all the winter comfort you could wish for.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Is the Mullerthal Trail entirely open during winter?",
+        answer:
+          "Yes, but you must exercise caution during freezing temperatures as the rocky steps become very slippery.",
+      },
+      {
+        question: "Does it snow often in Luxembourg?",
+        answer:
+          "Snow is fairly common in the higher elevations like the north and parts of Mullerthal, creating quite a scenic environment.",
+      },
+    ],
+    attractionSchema: [
+      {
+        name: "Beaufort Winter Forest",
+        description: "Beautiful woodland near Beaufort that turns into a winter wonderland when it snows.",
+        locality: "Beaufort",
+      },
+    ],
+  },
+  {
+    translationKey: "beginners-guide",
+    locale: "nl",
+    slug: "mullerthal-trail-voor-beginners-tips-en-makkelijke-routes",
+    title: "Mullerthal Trail voor beginners: tips en makkelijke routes",
+    excerpt:
+      "Wil je kennismaken met wandelen in Luxemburg? Ontdek de beste routes voor beginners op en rond de Mullerthal Trail zonder te veel hoogteverschil.",
+    description:
+      "Ben je nieuw met wandelvakanties? Start hier met een gids voor beginners over de Mullerthal Trail. Makkelijke routes, paklijsten en handige tips.",
+    coverImage: "/trail-4.jpg",
+    publishedAt: "2026-04-14",
+    updatedAt: "2026-04-14",
+    readingMinutes: 7,
+    category: "Beginners",
+    focusKeyword: "Mullerthal Trail beginners",
+    secondaryKeywords: [
+      "makkelijke wandelroutes Luxemburg",
+      "wandelen voor beginners Luxemburg",
+      "starten met wandelen Mullerthal",
+    ],
+    tags: ["beginners", "Mullerthal", "makkelijk"],
+    routeHighlights: [
+      "Rondje om het meer van Echternach",
+      "Korte boswandeling bij Berdorf",
+      "Delen van de Mullerthal Route 2",
+    ],
+    logisticsHighlights: [
+      "Start met wandelingen van 5-8 kilometer",
+      "Neem wandelschoenen met goed profiel, ook voor makkelijke routes",
+      "Download kaarten offline voor het geval je bereik verliest",
+    ],
+    sections: [
+      {
+        title: "Je eerste wandelvakantie in Luxemburg",
+        paragraphs: [
+          "De uitdrukking 'Klein Zwitserland' schrikt sommige beginners misschien af, maar maak je geen zorgen. Luxemburg en het Mullerthal bieden volop opties voor wie niet direct 20 km op een dag wil afleggen.",
+          "In de praktijk betekent dit dat je kunt genieten van kloven, beekjes en weelderige bossen zonder urenlang stijl omhoog te hoeven lopen.",
+        ],
+      },
+      {
+        title: "Waar begin je?",
+        paragraphs: [
+          "Laat de meerdaagse tochten voor wat ze zijn en richt je op de 'ExtraTours' of lokale rondwandelingen. Deze lopen in een lus en vereisen geen uitgebreide logistiek.",
+        ],
+        bullets: [
+          "Start met een ochtendwandeling en kijk hoe het gaat.",
+          "Kies routes met weinig snelle stijgingen.",
+          "Combineer wandelen met een bezoek aan een lokaal kasteel of gezellig dorpje.",
+        ],
+      },
+      {
+        title: "Een relaxte planning",
+        paragraphs: [
+          "Overdrijf het niet op dag één. Vanuit je comfortabele appartement in Grevenmacher kun je het rustig aanpakken. Begin na een uitgebreid ontbijt en wees halverwege de middag weer terug om bij te komen.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Heb ik echte bergschoenen nodig in Mullerthal?",
+        answer:
+          "Zelfs voor makkelijkere routes zijn lichte tot middelhoge wandelschoenen essentieel vanwege boomwortels en rotsachtige paden.",
+      },
+      {
+        question: "Wat is de makkelijkste route voor de eerste dag?",
+        answer:
+          "Een wandeling rondom Echternach is voornamelijk vlak en biedt een geweldige introductie tot de regio.",
+      },
+    ],
+    attractionSchema: [
+      {
+        name: "Echternach Beginner Trails",
+        description: "Ideale vlakke en beboste routes rondom de stad Echternach.",
+        locality: "Echternach",
+      },
+    ],
+  },
+  {
+    translationKey: "beginners-guide",
+    locale: "en",
+    slug: "mullerthal-trail-for-beginners-tips-and-easy-routes",
+    title: "Mullerthal Trail for Beginners: Tips and Easy Routes",
+    excerpt:
+      "New to hiking in Luxembourg? Explore the best beginner-friendly routes on and around the Mullerthal Trail with minimal elevation gain.",
+    description:
+      "Are you new to hiking holidays? Start here with a beginner's guide to the Mullerthal Trail. Easy routes, packing lists, and handy tips.",
+    coverImage: "/trail-4.jpg",
+    publishedAt: "2026-04-14",
+    updatedAt: "2026-04-14",
+    readingMinutes: 7,
+    category: "Beginners",
+    focusKeyword: "Mullerthal Trail beginners",
+    secondaryKeywords: [
+      "easy hiking routes Luxembourg",
+      "hiking for beginners Luxembourg",
+      "start hiking Mullerthal",
+    ],
+    tags: ["beginners", "Mullerthal", "easy"],
+    routeHighlights: [
+      "Echternach Lake loop",
+      "Short forest walks near Berdorf",
+      "Flatter sections of Mullerthal Route 2",
+    ],
+    logisticsHighlights: [
+      "Start with hikes between 5 and 8 kilometers",
+      "Wear hiking shoes with good grip, even on easy paths",
+      "Download offline maps in case you lose cellular reception",
+    ],
+    sections: [
+      {
+        title: "Your first hiking trip in Luxembourg",
+        paragraphs: [
+          "The nickname 'Little Switzerland' might intimidate some beginners, but don't worry. Luxembourg offers plenty of scenic options for those who aren't ready to conquer 20km a day.",
+          "You can still enjoy stunning gorges, babbling streams, and lush forests without enduring grueling, endless ascents.",
+        ],
+      },
+      {
+        title: "Where should you start?",
+        paragraphs: [
+          "Ignore the multi-day trekking pressure and focus on 'ExtraTours' or local circular routes. They loop back to the start and don't require intense logistical planning.",
+        ],
+        bullets: [
+          "Opt for a morning hike and see how you feel.",
+          "Avoid trails with rapid elevation profiles.",
+          "Mix your hiking with afternoon sightseeing at a local castle or village.",
+        ],
+      },
+      {
+        title: "Pacing yourself",
+        paragraphs: [
+          "Don't overdo it on day one. From your cozy apartment base in Grevenmacher, you can take a relaxed approach. Start post-breakfast and finish mid-afternoon to recuperate.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Do I actually need hiking boots for Mullerthal?",
+        answer:
+          "Yes, light to mid-height hiking shoes are highly recommended because the terrain involves roots and uneven rocks.",
+      },
+      {
+        question: "What is the easiest day-one route?",
+        answer:
+          "A stroll around Echternach is mostly flat and incredibly rewarding visually without putting strain on your knees.",
+      },
+    ],
+    attractionSchema: [
+      {
+        name: "Echternach Beginner Trails",
+        description: "Perfectly flat and gentle woodland routes around the town of Echternach.",
+        locality: "Echternach",
+      },
+    ],
+  },
+  {
+    translationKey: "gear-checklist",
+    locale: "nl",
+    slug: "wandelvakantie-luxemburg-paklijst-wat-neem-je-mee",
+    title: "Wandelvakantie Luxemburg paklijst: wat neem je mee?",
+    excerpt:
+      "Vergeet niets! Ontdek onze essentiële paklijst voor een succesvolle wandelvakantie in Luxemburg, van kleding tot wandeluitrusting.",
+    description:
+      "Ga je wandelen in Luxemburg? Bekijk de ultieme paklijst. Tips voor de juiste schoenen, regenkleding en dagrugzakuitrusting voor het Mullerthal.",
+    coverImage: "/trail-5.jpg",
+    publishedAt: "2026-04-16",
+    updatedAt: "2026-04-16",
+    readingMinutes: 6,
+    category: "Planning",
+    focusKeyword: "paklijst wandelvakantie Luxemburg",
+    secondaryKeywords: [
+      "wat meenemen wandelen Mullerthal",
+      "wandeluitrusting Luxemburg",
+      "kleding wandelvakantie",
+    ],
+    tags: ["paklijst", "voorbereiding", "uitrusting", "kleding"],
+    routeHighlights: [
+      "Specifieke gear voor rotsachtige Mullerthal paden",
+      "Kleding advies voor wisselvallig herfstweer",
+      "Dagrugzak benodigdheden",
+    ],
+    logisticsHighlights: [
+      "Laagjes zijn je beste vriend in dit klimaat",
+      "Investeer in stevige, niet-gladde wandelschoenen (type A/B)",
+      "Neem een compacte EHBO-kit mee",
+    ],
+    sections: [
+      {
+        title: "Kleding: Wees voorbereid op alles",
+        paragraphs: [
+          "Het weer in Luxemburg kan, net als thuis, wisselvallig zijn. Binnen een paar kilometer stap je van een zonovergoten vallei in een schaduwrijke, kille kloof.",
+          "Daarom is het drielagensysteem essentieel: zweet-afvoerend ondergoed, een isolerende tussenlaag en een regen- of windjas.",
+        ],
+      },
+      {
+        title: "Schoenen en de dagrugzak",
+        paragraphs: [
+          "Het belangrijkste onderdeel van de trip zijn je voeten. Voor de Mullerthal Trail raden we lichte wandelschoenen (A of B) met een stevig profiel aan. De stenen trappen zijn soms glad.",
+        ],
+        bullets: [
+          "Een dagrugzak (15-25 liter) is perfect voor drinken, snacks en een jas.",
+          "Zonnebrand én regenkleding horen standaard in je tas te zitten.",
+          "Neem blarenpleisters mee, gewoon voor de zekerheid.",
+        ],
+      },
+      {
+        title: "Geen zorgen: Winkels dichtbij",
+        paragraphs: [
+          "Ben je toch een oplader of paraplu vergeten? Grevenmacher heeft genoeg winkels om je uitrusting aan te vullen zonder je vakantie in de problemen te brengen.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Heb ik wandelstokken nodig?",
+        answer:
+          "Niet noodzakelijk, maar ze bieden veel steun, vooral op de trappen in de Mullerthal regio met lichte knieklachten.",
+      },
+      {
+        question: "Is een grote backpack nodig?",
+        answer:
+          "Zeker niet als je bij ons in het appartement verblijft. Een lichte daypack voor overdag is meer dan voldoende.",
+      },
+    ],
+    attractionSchema: [
+      {
+        name: "Luxembourg Outdoors",
+        description: "Natuurgebied dat vraagt om goede basisuitrusting om veilig en comfortabel te hiken.",
+        locality: "Luxembourg",
+      },
+    ],
+  },
+  {
+    translationKey: "gear-checklist",
+    locale: "en",
+    slug: "luxembourg-hiking-holiday-packing-list",
+    title: "Luxembourg Hiking Holiday Packing List: What to Bring",
+    excerpt:
+      "Forget nothing! Discover our essential hiking packing list for a successful walking holiday in Luxembourg, from clothes to daypack gear.",
+    description:
+      "Heading to Luxembourg for a hiking trip? Check out the ultimate packing list. Tips for the right boots, rain gear, and daypack necessities for Mullerthal.",
+    coverImage: "/trail-5.jpg",
+    publishedAt: "2026-04-16",
+    updatedAt: "2026-04-16",
+    readingMinutes: 6,
+    category: "Planning",
+    focusKeyword: "packing list hiking Luxembourg",
+    secondaryKeywords: [
+      "what to pack walking Mullerthal",
+      "hiking gear Luxembourg",
+      "walking holiday clothes",
+    ],
+    tags: ["packing list", "preparation", "gear", "clothing"],
+    routeHighlights: [
+      "Specific gear for rocky Mullerthal trails",
+      "Clothing for unpredictable weather",
+      "Daypack essentials",
+    ],
+    logisticsHighlights: [
+      "Layering is your best friend in this climate",
+      "Invest in sturdy, anti-slip hiking boots (Type A/B)",
+      "Always carry a compact First-Aid kit",
+    ],
+    sections: [
+      {
+        title: "Clothing: Prepare for anything",
+        paragraphs: [
+          "Luxembourg weather is notoriously changeable. You might step out of a sun-drenched valley straight into a shady, damp gorge.",
+          "That's why the three-layer system is vital: moisture-wicking base, insulating mid-layer, and a waterproof shell.",
+        ],
+      },
+      {
+        title: "Footwear and the Daypack",
+        paragraphs: [
+          "Your feet dictate your vacation's success. For the Mullerthal Trail, mid-height hiking shoes with a rugged grip are strongly advised because the rocky stairs get extremely slick.",
+        ],
+        bullets: [
+          "A small daypack (15-25 liters) perfectly holds water, snacks, and extra layers.",
+          "Sunscreen and a packable rain jacket belong in your bag every single day, no exceptions.",
+          "Don't forget blister plasters, just in case.",
+        ],
+      },
+      {
+        title: "No worries: Shops nearby",
+        paragraphs: [
+          "Did you forget a rain poncho or a hiking sock? Basecamp Grevenmacher has enough nearby shops to restock your gear on the fly.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Do I really need trekking poles?",
+        answer:
+          "Not strictly necessary, but highly recommended if you wish to spare your knees on the thousands of stone steps in Mullerthal.",
+      },
+      {
+        question: "Is a massive trekking backpack required?",
+        answer:
+          "Absolutely not. Since you're not wild camping when staying at our apartment, a light daypack is all you need.",
+      },
+    ],
+    attractionSchema: [
+      {
+        name: "Luxembourg Outdoors",
+        description: "Natural terrain that demands fundamental hiking gear for comfort and safety.",
+        locality: "Luxembourg",
+      },
+    ],
+  },
+  {
+    translationKey: "castles-and-trails",
+    locale: "nl",
+    slug: "kastelen-en-wandelroutes-luxemburg-combineer-cultuur-en-natuur",
+    title: "Kastelen en Wandelroutes in Luxemburg: Cultuur & Natuur",
+    excerpt:
+      "Waarom kiezen? Combineer adembenemende boswandelingen met historische kastelen zoals Vianden en Beaufort. De beste routes voor ontdekkers.",
+    description:
+      "Combineer de mooiste wandelroutes van Luxemburg met een bezoek aan historische kastelen. Lees over de kasteelroutes van Beaufort en Vianden voor een topweekend.",
+    coverImage: "/mosel-cruise.jpg",
+    publishedAt: "2026-04-18",
+    updatedAt: "2026-04-18",
+    readingMinutes: 7,
+    category: "Culture",
+    focusKeyword: "kastelen wandelroutes Luxemburg",
+    secondaryKeywords: [
+      "wandelen kasteel Vianden",
+      "wandelroute Beaufort kasteel",
+      "cultuur en natuur wandelen Luxemburg",
+    ],
+    tags: ["kastelen", "cultuur", "avontuur", "Vianden", "Beaufort"],
+    routeHighlights: [
+      "Vianden Kasteel wandeling met hoogtemeter",
+      "Beaufort Valleiroute eindigend bij de ruïnes",
+      "Bourglinster Kasteel en omgeving",
+    ],
+    logisticsHighlights: [
+      "Check actuele openingstijden van de kastelen voor je wandeling start",
+      "Parkeren is bij de meeste kastelen prima geregeld of verbonden via OV",
+      "Kastelen bieden vaak perfecte terrassen na het wandelen",
+    ],
+    sections: [
+      {
+        title: "Twee vliegen in één klap",
+        paragraphs: [
+          "Je bent naar Luxemburg gekomen om te hiken, maar kunt er simpelweg niet omheen: de historische kastelen. Ze bieden niet alleen fantastische fotomomenten, maar fungeren vaak ook als het perfecte start- of eindpunt voor wandelingen.",
+          "Voor avontuurlijke wandelaars uit Nederland vormt de combinatie van Middeleeuwse geschiedenis met steile bospartijen een verfrissing ten opzichte van wandelen op het vlakke land.",
+        ],
+      },
+      {
+        title: "Top Kasteelroutes",
+        paragraphs: [
+          "Het Mullerthal en nabijgelegen streken herbergen enkele van de mooiste kastelen van Europa, die perfect in wandellussen passen.",
+        ],
+        bullets: [
+          "Vianden: Pittige heuvels, maar het adembenemende uitzicht op het imposante kasteel compenseert ruimschoots de inspanning.",
+          "Beaufort: Loop eerst door de met mossen begroeide ravijnen om je dag te eindigen met een rondleiding door een sprookjesachtige ruïne (en een glaasje lokale kersenlikeur).",
+        ],
+      },
+      {
+        title: "Rust en evaluatie in Grevenmacher",
+        paragraphs: [
+          "Na een dag vol riddersverhalen en kilometers op de stappenteller sluit je af in ons appartement, ideaal gelegen om de volgende dag direct koers te zetten naar het volgende historische monument.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Zijn de kastelen het hele jaar open?",
+        answer:
+          "De meeste kastelen hebben in de winter (november - maart) beperktere openingstijden of zijn enkel in het weekend geopend, check dit altijd vooraf.",
+      },
+      {
+        question: "Is de route rond Vianden moeilijk?",
+        answer:
+          "De loop rond the kasteel kent aanzienlijke hoogteverschillen en vergt een degelijke basisconditie.",
+      },
+    ],
+    attractionSchema: [
+      {
+        name: "Kasteel van Vianden",
+        description: "Grootste en prachtig gereconstrueerd kasteel boven Vianden.",
+        locality: "Vianden",
+      },
+      {
+        name: "Ruïnes van Beaufort",
+        description: "Mysterieuze restanten van een versterkte burcht omringd door dichte bossen.",
+        locality: "Beaufort",
+      },
+    ],
+  },
+  {
+    translationKey: "castles-and-trails",
+    locale: "en",
+    slug: "castles-and-hiking-trails-luxembourg-combine-culture-and-nature",
+    title: "Castles and Hiking Trails in Luxembourg: Culture & Nature",
+    excerpt:
+      "Why choose? Combine breathtaking forest hikes with historical landmarks like Vianden and Beaufort. The best routes for explorers.",
+    description:
+      "Combine Luxembourg's finest hiking routes with historical castles. Discover the castle loops of Beaufort and Vianden for a top-tier weekend.",
+    coverImage: "/mosel-cruise.jpg",
+    publishedAt: "2026-04-18",
+    updatedAt: "2026-04-18",
+    readingMinutes: 7,
+    category: "Culture",
+    focusKeyword: "castles hiking trails Luxembourg",
+    secondaryKeywords: [
+      "hiking Vianden castle",
+      "walking route Beaufort trail",
+      "culture and nature hikes Luxembourg",
+    ],
+    tags: ["castles", "culture", "adventure", "Vianden", "Beaufort"],
+    routeHighlights: [
+      "Vianden Castle hike with panoramic elevation",
+      "Beaufort Valley route ending at the ruins",
+      "Bourglinster Castle surroundings",
+    ],
+    logisticsHighlights: [
+      "Verify castle opening hours before starting your hike",
+      "Parking is easily found or seamlessly connected by free public transport",
+      "Castles often provide perfect terrace spots for a post-hike drink",
+    ],
+    sections: [
+      {
+        title: "Two birds with one stone",
+        paragraphs: [
+          "You came to Luxembourg to hike, but you simply cannot ignore the historical castles. Not only do they offer fantastic photo ops, they frequently function as excellent start or finish points for trails.",
+          "For Dutch travelers accustomed to flat landscapes, combining Medieval history with steep forested hills is exceptionally refreshing.",
+        ],
+      },
+      {
+        title: "Top Castle Routes",
+        paragraphs: [
+          "Mullerthal and its surrounding regions house some of Europe's most picturesque fortresses, directly integrated into loop trails.",
+        ],
+        bullets: [
+          "Vianden: Challenging hills, but the stunning panoramic views over the imposing castle make the effort entirely worthwhile.",
+          "Beaufort: Hike through moss-covered ravines first, finishing your day wandering the fairy-tale ruins (and sipping the local cherry liqueur).",
+        ],
+      },
+      {
+        title: "Rest and reflect in Grevenmacher",
+        paragraphs: [
+          "After a day full of knight's tales and thousands of steps, return to our apartment—perfectly located for you to tackle the next historical monument the very next morning.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Are the castles open year-round?",
+        answer:
+          "Many castles transition to restricted hours or weekend-only schedules during winter (Nov-Mar), so early confirmation is crucial.",
+      },
+      {
+        question: "Is the trail around Vianden difficult?",
+        answer:
+          "Yes, the path requires relatively good fitness due to steep ascents and descents around the castle hill.",
+      },
+    ],
+    attractionSchema: [
+      {
+        name: "Vianden Castle",
+        description: "A monumental, restored hilltop fortress dominating the town of Vianden.",
+        locality: "Vianden",
+      },
+      {
+        name: "Beaufort Castles",
+        description: "Mysterious structural ruins nestled at the edge of thick hiking forests.",
+        locality: "Beaufort",
+      },
+    ],
+  }
 ];
 
 function isNonEmptyString(value: string): boolean {
