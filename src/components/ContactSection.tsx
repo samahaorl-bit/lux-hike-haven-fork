@@ -7,8 +7,6 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Label } from "./ui/label";
 import { MapPin, Mail, MessageSquare, Send } from "lucide-react";
-import { toast } from "sonner";
-import emailjs from "emailjs-com";
 
 export default function ContactSection() {
   const emailServiceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
@@ -25,18 +23,25 @@ export default function ContactSection() {
   });
 
   const [loading, setLoading] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState("");
+  const [submitMessageType, setSubmitMessageType] = useState<"success" | "error">(
+    "success"
+  );
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitMessage("");
 
     if (!formData.email) {
-      toast.error("❌ Please provide a valid email address.");
+      setSubmitMessageType("error");
+      setSubmitMessage("Please provide a valid email address.");
       return;
     }
 
     if (!isEmailConfigured) {
-      toast.error(
-        "❌ Contact form is not configured yet. Please add EmailJS environment variables."
+      setSubmitMessageType("error");
+      setSubmitMessage(
+        "Contact form is not configured yet. Please add EmailJS environment variables."
       );
       return;
     }
@@ -46,10 +51,11 @@ export default function ContactSection() {
     const userId = emailUserId as string;
 
     setLoading(true);
-    const toastId = toast.loading("Sending message...");
 
-    emailjs
-      .send(
+    try {
+      const { default: emailjs } = await import("emailjs-com");
+
+      await emailjs.send(
         serviceId,
         templateId,
         {
@@ -58,20 +64,18 @@ export default function ContactSection() {
           title: formData.message, // or "message" depending on template
         },
         userId
-      )
-      .then(() => {
-        toast.dismiss(toastId);
-        toast.success("✅ Message sent! We'll get back to you soon.");
-        setFormData({ name: "", email: "", message: "" });
-      })
-      .catch((error) => {
-        console.error(error);
-        toast.dismiss(toastId);
-        toast.error("❌ Failed to send message. Please try again.");
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+      );
+
+      setSubmitMessageType("success");
+      setSubmitMessage("Message sent. We will get back to you soon.");
+      setFormData({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error(error);
+      setSubmitMessageType("error");
+      setSubmitMessage("Failed to send message. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (
@@ -222,6 +226,19 @@ export default function ContactSection() {
                         </>
                       )}
                     </Button>
+                    {submitMessage && (
+                      <p
+                        role="status"
+                        aria-live="polite"
+                        className={`text-sm ${
+                          submitMessageType === "success"
+                            ? "text-primary"
+                            : "text-destructive"
+                        }`}
+                      >
+                        {submitMessage}
+                      </p>
+                    )}
                     {!isEmailConfigured && (
                       <p className="text-xs text-muted-foreground">
                         Contact form setup is missing. Add

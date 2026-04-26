@@ -92,7 +92,6 @@ export default function ListingDetailSection() {
               fill
               className="object-cover group-hover:scale-105 duration-500"
               sizes="(min-width: 1024px) 60vw, 100vw"
-              priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
           </div>

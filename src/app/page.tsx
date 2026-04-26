@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { ArrowUpRight } from "lucide-react";
 import HeroSection from "@/components/HeroSection";
 import HikingGuide from "@/components/HikingGuide";
@@ -9,8 +10,28 @@ import AmenitiesSection from "@/components/AmenitiesSection";
 import GrevenmacherSection from "@/components/GrevenmacherSection";
 import CtaReserveSection from "@/components/CtaReserveSection";
 import AboutSection from "@/components/AboutSection";
-import ContactSection from "@/components/ContactSection";
 import { absoluteUrl, seoRoutes, siteConfig } from "@/lib/site";
+
+const ContactSection = dynamic(() => import("@/components/ContactSection"), {
+  loading: () => (
+    <section
+      id="contact"
+      className="section-divider section-parallax-soft py-24 bg-gradient-to-b from-muted/55 via-background to-muted/45"
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-2xl mx-auto text-center">
+          <p className="inline-flex items-center rounded-full bg-secondary/10 text-secondary px-4 py-1.5 text-xs font-semibold tracking-wide mb-4">
+            Plan With Confidence
+          </p>
+          <h2 className="text-4xl font-bold text-foreground mb-4">Get in Touch</h2>
+          <p className="text-lg text-muted-foreground">
+            Loading contact details...
+          </p>
+        </div>
+      </div>
+    </section>
+  ),
+});
 
 export const metadata: Metadata = {
   title: "Lux Traveler | Design apartment in Grevenmacher",

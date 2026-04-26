@@ -14,6 +14,8 @@ const HeroSection = () => {
   const airbnbUrl = getAirbnbUrl("hero-section");
   const heroImages = [heroImage1, heroImage2, heroImage3, heroImage4];
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const currentImage = heroImages[currentImageIndex];
+  const isInitialHeroFrame = currentImageIndex === 0;
 
   const scrollToApartment = () => {
     const element = document.getElementById("listing");
@@ -43,22 +45,19 @@ const HeroSection = () => {
     >
       {/* Background Image Carousel */}
       <div className="absolute inset-0">
-        {heroImages.map((image, index) => (
-          <div
-            key={index}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
-              index === currentImageIndex ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            <Image
-              src={image}
-              alt={`Hero image ${index + 1}`}
-              fill
-              className="object-cover"
-              sizes="100vw"
-            />
-          </div>
-        ))}
+        <div className="absolute inset-0 transition-opacity duration-700 opacity-100">
+          <Image
+            key={currentImage.src}
+            src={currentImage}
+            alt={`Luxembourg hiking apartment hero image ${currentImageIndex + 1}`}
+            fill
+            className="object-cover animate-fade-in"
+            sizes="100vw"
+            priority={isInitialHeroFrame}
+            loading={isInitialHeroFrame ? "eager" : "lazy"}
+            fetchPriority={isInitialHeroFrame ? "high" : "auto"}
+          />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/60"></div>
       </div>
 
