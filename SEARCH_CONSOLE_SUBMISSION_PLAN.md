@@ -1,6 +1,6 @@
 # Search Console Submission Plan
 
-Updated: 2026-04-08
+Updated: 2026-04-28
 Owner: Lux Traveler SEO
 Scope: Deployment-ready indexing queue and first 14-day follow-up checkpoints.
 
