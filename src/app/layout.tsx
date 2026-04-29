@@ -10,6 +10,7 @@ import {
   seoRoutes,
   siteConfig,
 } from "@/lib/site";
+import { Analytics } from "@vercel/analytics/next";
 
 const shouldIndex = isCanonicalProductionSite;
 
@@ -140,6 +141,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         {children}
         <Footer />
         <RevealOnScroll />
+        <Analytics />
       </body>
     </html>
   );
